@@ -166,7 +166,7 @@ Fixation = visual.TextStim(win=win, name='Fixation',
 # Initialize components for Routine "Trial_2"
 Trial_2Clock = core.Clock()
 Bodziec = visual.TextStim(win=win, name='Bodziec',
-    text='Any text\n\nincluding line breaks',
+    text='Bodziec',
     font='Arial',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0,
     color='white', colorSpace='rgb', opacity=1,
@@ -175,7 +175,8 @@ Bodziec = visual.TextStim(win=win, name='Bodziec',
 
 # Initialize components for Routine "feedback"
 
-meanRT=[] #placeholder for responses, so one can compute a baseline of responses
+meanRT = [] #placeholder for responses, to compute a baseline of stim duration
+feedVal = [] #placeholder for feedback values, for deciding hardness
 
 feedbackClock = core.Clock()
 
@@ -794,6 +795,10 @@ for thisTrial_block_1 in trial_block_1:
                 key_resp.keys = theseKeys.name  # just the last key pressed
                 key_resp.rt = theseKeys.rt
                 # a response ends the routine
+                print(test_resp.rt) #print response, testing purposes
+                meanRT.append(test_resp.rt) #append response to previous ones
+                baseline = np.mean(meanRT) #calculate new baseline
+                print(baseline)
                 continueRoutine = False
 
         # check for quit (typically the Esc key)
@@ -836,13 +841,16 @@ for thisTrial_block_1 in trial_block_1:
     routineTimer.add(2.000000)
     # update component parameters for each repeat
     print(key_resp.rt)
-    if key_resp.rt != list():
+    if key_resp.rt != list(): #test if there was response
         if key_resp.rt < duration:
-            fdb = feedbackfile[0]
+            fdb = feedbackfile[0] #positive feedback
+            feedVal.append(1)
         else:
-            fdb = feedbackfile[1]
+            fdb = feedbackfile[1] #negative feedback
+            feedVal.append(0)
     else:
-        fdb = feedbackfile[1]
+        fdb = feedbackfile[1] #no-response feedback
+        feedVal.append(0)
 
     image.setImage(fdb)
     # keep track of which components have finished
@@ -876,6 +884,11 @@ for thisTrial_block_1 in trial_block_1:
             image.frameNStop = frameN  # exact frame index
             win.timeOnFlip(image, 'tStopRefresh')  # time at next scr refresh
             image.setAutoDraw(False)
+            #set duration of next stimulus
+            if (np.count_nonzero(feedVal)/len(feedVal))<0.5:
+                duration = np.round(np.random.uniform(0.1,2*baseline),2)
+            else:
+                duration = np.round(np.random.uniform(0.1,baseline),2)
 
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -1003,7 +1016,11 @@ win.flip()
 thisExp.saveAsWideText(filename+'.csv')
 thisExp.saveAsPickle(filename)
 logging.flush()
+print(feedVal)
+print('Procent poprawnych odpowiedzi: {}%'.format((np.count_nonzero(feedVal)/len(feedVal)*100)))
 # make sure everything is closed down
 thisExp.abort()  # or data files will save again on exit
 win.close()
 core.quit()
+print(feedVal)
+print('Procent poprawnych odpowiedzi: {}%'.format((np.count_nonzero(feedVal)/len(feedVal)*100)))
