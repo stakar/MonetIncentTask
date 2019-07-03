@@ -146,9 +146,10 @@ MeanClock = core.Clock()
 # Initialize components for Routine "Instrukcja_2"
 Instrukcja_2Clock = core.Clock()
 Inst_2 = visual.TextStim(win=win, name='Inst_2',
-    text='Instrukcja 2',
+    text='Teraz staraj się nacisnąć spację zanim bodziec zniknie \n'+
+    'Po każdej prezentacji bodźca zostanie pokazany feedback, czy Ci się udało, czy nie',
     font='Arial',
-    pos=(0, 0), height=0.1, wrapWidth=None, ori=0,
+    pos=(0, 0), height=0.7, wrapWidth=None, ori=0,
     color='white', colorSpace='rgb', opacity=1,
     languageStyle='LTR',
     depth=0.0);
