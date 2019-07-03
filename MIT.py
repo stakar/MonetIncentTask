@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 Monetary Incentive Task
@@ -323,8 +323,6 @@ for thisTest in test:
                     endExpNow = True
                 test_resp.keys = theseKeys.name  # just the last key pressed
                 test_resp.rt = theseKeys.rt
-                print(theseKeys.rt)
-                meanRT.append(theseKeys.rt)
                 # a response ends the routine
                 continueRoutine = False
 
@@ -344,11 +342,6 @@ for thisTest in test:
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
             win.flip()
-        win.clearBuffer()
-        win.flip()
-
-        time.sleep(2)
-
     # -------Ending Routine "Trial"-------
     for thisComponent in TrialComponents:
         if hasattr(thisComponent, "setAutoDraw"):
@@ -370,6 +363,9 @@ for thisTest in test:
     frameN = -1
     continueRoutine = True
     # update component parameters for each repeat
+
+    print(test_resp.rt)
+    meanRT.append(test_resp.rt)
 
 
 
@@ -426,9 +422,11 @@ continueRoutine = True
 routineTimer.add(2.000000)
 # update component parameters for each repeat
 print(meanRT)
-asd = np.mean(meanRT)
+baseline = np.mean(meanRT)
 
-msg = asd
+#duration of first stimulus in Trial_2
+duration = np.round(np.random.uniform(0.1,2*baseline),2)
+
 # keep track of which components have finished
 sadasdComponents = [test_mean]
 for thisComponent in sadasdComponents:
@@ -488,7 +486,7 @@ thisExp.addData('test_mean.started', test_mean.tStartRefresh)
 thisExp.addData('test_mean.stopped', test_mean.tStopRefresh)
 
 # set up handler to look after randomisation of conditions etc
-trials = data.TrialHandler(nReps=5, method='random',
+trials = data.TrialHandler(nReps=10, method='random',
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='trials')
@@ -601,7 +599,8 @@ for thisTrial in trials:
             Bodziec.frameNStart = frameN  # exact frame index
             win.timeOnFlip(Bodziec, 'tStartRefresh')  # time at next scr refresh
             Bodziec.setAutoDraw(True)
-        frameRemains = 0.0 + 1.0 - win.monitorFramePeriod * 0.75  # most of one frame period left
+            #below variable duration defines how long the stimulus is shown
+        frameRemains = 0.0 + duration - win.monitorFramePeriod * 0.75  # most of one frame period left
         if Bodziec.status == STARTED and t >= frameRemains:
             # keep track of stop time/frame for later
             Bodziec.tStop = t  # not accounting for scr refresh
@@ -619,7 +618,7 @@ for thisTrial in trials:
             # keyboard checking is just starting
             win.callOnFlip(key_resp.clock.reset)  # t=0 on next screen flip
             key_resp.clearEvents(eventType='keyboard')
-        frameRemains = 0.0 + 1.38- win.monitorFramePeriod * 0.75  # most of one frame period left
+        frameRemains = 0.0 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
         if key_resp.status == STARTED and t >= frameRemains:
             # keep track of stop time/frame for later
             key_resp.tStop = t  # not accounting for scr refresh
@@ -651,10 +650,7 @@ for thisTrial in trials:
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        win.clearBuffer()
-        win.flip()
 
-        time.sleep(2)
 
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
@@ -682,14 +678,14 @@ for thisTrial in trials:
     continueRoutine = True
     routineTimer.add(2.000000)
     # update component parameters for each repeat
-    try:
-        if key_resp.rt > 0.5:
+    print(key_resp.rt)
+    if key_resp.rt != list():
+        if key_resp.rt < duration:
             fdb = feedbackfile[0]
         else:
             fdb = feedbackfile[1]
-    except:
+    else:
         fdb = feedbackfile[1]
-
     image.setImage(fdb)
     # keep track of which components have finished
     feedbackComponents = [image]
@@ -721,6 +717,7 @@ for thisTrial in trials:
             image.tStop = t  # not accounting for scr refresh
             image.frameNStop = frameN  # exact frame index
             win.timeOnFlip(image, 'tStopRefresh')  # time at next scr refresh
+            duration = np.round(np.random.uniform(0.1,2*baseline),2)
             image.setAutoDraw(False)
 
         # check for quit (typically the Esc key)
