@@ -55,7 +55,7 @@ os.chdir(_thisDir)
 
 # Store info about the experiment session
 psychopyVersion = '3.1.2'
-expName = 'untitled'  # from the Builder filename that created this script
+expName = 'MIT_Exp'  # from the Builder filename that created this script
 expInfo = {'participant': '', 'session': '001'}
 dlg = gui.DlgFromDict(dictionary=expInfo, sortKeys=False, title=expName)
 if dlg.OK == False:
@@ -147,9 +147,9 @@ MeanClock = core.Clock()
 Instrukcja_2Clock = core.Clock()
 Inst_2 = visual.TextStim(win=win, name='Inst_2',
     text='Teraz staraj się nacisnąć spację zanim bodziec zniknie \n'+
-    'Po każdej prezentacji bodźca zostanie pokazany feedback, czy Ci się udało, czy nie',
+    'Po każdej prezentacji bodźca zostanie pokazany feedback, czy Ci się udało, czy nie ',
     font='Arial',
-    pos=(0, 0), height=0.7, wrapWidth=None, ori=0,
+    pos=(0, 0), height=0.07, wrapWidth=None, ori=0,
     color='white', colorSpace='rgb', opacity=1,
     languageStyle='LTR',
     depth=0.0);
@@ -250,7 +250,7 @@ while continueRoutine:
         win.callOnFlip(key_resp_inst_1.clock.reset)  # t=0 on next screen flip
         key_resp_inst_1.clearEvents(eventType='keyboard')
     if key_resp_inst_1.status == STARTED:
-        theseKeys = key_resp_inst_1.getKeys(keyList=['space'], waitRelease=False)
+        theseKeys = key_resp_inst_1.getKeys(keyList=['return'], waitRelease=False)
         if len(theseKeys):
             theseKeys = theseKeys[0]  # at least one key was pressed
 
@@ -598,7 +598,7 @@ while continueRoutine:
         win.callOnFlip(key_resp_inst_2.clock.reset)  # t=0 on next screen flip
         key_resp_inst_2.clearEvents(eventType='keyboard')
     if key_resp_inst_2.status == STARTED:
-        theseKeys = key_resp_inst_2.getKeys(keyList=['space'], waitRelease=False)
+        theseKeys = key_resp_inst_2.getKeys(keyList=['return'], waitRelease=False)
         if len(theseKeys):
             theseKeys = theseKeys[0]  # at least one key was pressed
 
