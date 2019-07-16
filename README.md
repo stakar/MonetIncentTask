@@ -12,14 +12,27 @@ Psychopy3, Python3, Numpy
 Code presented above is performing Monetary Incentive Task
 
 Firstly there is trial that measures subject's responses, from which it creates a baseline for duration of stimuli
-
 in block of experiment. Subject's task is to response before stimuli disappear.
-
 Then it adapts to subject, making duration of stimuli shorter or longer dependantly on subject's responses,
-
 thus the overall score is always advancing toward 50% for right and bad responses.
+
+### Stimuli 
+
+Stimuli is a simple white rectangle, before it's appearance the cue (cross) is suggesting it's position
+
+### Feedback
+
+After performing single trial in task, the feeback is provided to the user, positive is:
+
+![alt text](https://github.com/stakar/MonetIncentTask/blob/master/happy.png "Logo Title Text 1")
+
+and negative:
+
+![alt text](https://github.com/stakar/MonetIncentTask/blob/master/sad.png "Logo Title Text 1")
 
 ## References
 FMRI Visualization of Brain Activity during a Monetary Incentive Delay Task (2000)
+
 Peirce, JW  Generating stimuli for neuroscience using PsychoPy.(2009)
+
 Peirce, JW  PsychoPy - Psychophysics software in Python.(2007)
