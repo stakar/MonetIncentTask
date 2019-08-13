@@ -1,0 +1,47 @@
+1.3755 	WARNING 	Import Error: No module named 'psychtoolbox'. Using event module for keyboard component.
+4.8466 	WARNING 	User requested fullscreen with size [1024  768], but screen is actually [1920, 1080]. Using actual size
+5.6697 	EXP 	Created window1 = Window(allowGUI=False, allowStencil=False, args=UNKNOWN, autoLog=True, bitsMode=UNKNOWN, blendMode='avg', color=array([0., 0., 0.]), colorSpace='rgb', fullscr=<method-wrapper '__getattribute__' of attributeSetter object at 0x0000025FA6ED1860>, gamma=None, kwargs=UNKNOWN, lms=UNKNOWN, monitor=<psychopy.monitors.calibTools.Monitor object at 0x0000025FA6F24EB8>, multiSample=False, name='window1', numSamples=2, pos=[0.0, 0.0], screen=0, size=array([1920, 1080]), stereo=False, units='height', useFBO=True, useRetina=False, viewOri=0.0, viewPos=None, viewScale=None, waitBlanking=True, winType='pyglet')
+5.6697 	EXP 	window1: recordFrameIntervals = False
+5.8360 	EXP 	window1: recordFrameIntervals = True
+6.0194 	EXP 	window1: recordFrameIntervals = False
+6.1469 	EXP 	Created Inst_1 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.07, italic=False, languageStyle='LTR', name='Inst_1', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='height', win=Window(...), wrapWidth=1)
+6.1480 	EXP 	Created Clear_screen = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='Clear_screen', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='', units='height', win=Window(...), wrapWidth=1)
+6.1545 	EXP 	Created Fixation = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='Fixation', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='+', units='height', win=Window(...), wrapWidth=1)
+6.1666 	EXP 	Created Stimulus = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='Stimulus', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='Bodziec ', units='height', win=Window(...), wrapWidth=1)
+6.2085 	EXP 	Created Inst_2 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.07, italic=False, languageStyle='LTR', name='Inst_2', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='height', win=Window(...), wrapWidth=1)
+6.2103 	EXP 	Created Fixation = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='Fixation', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='+', units='height', win=Window(...), wrapWidth=1)
+6.2134 	EXP 	Created Bodziec = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='Bodziec', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='Bodziec', units='height', win=Window(...), wrapWidth=1)
+6.2169 	EXP 	Created image = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='sin', interpolate=True, mask=None, maskParams=None, name='image', opacity=1.0, ori=0.0, pos=array([0., 0.]), size=array([0.5, 0.5]), texRes=128, units='height', win=Window(...))
+6.2234 	EXP 	Created End = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='End', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='Koniec', units='height', win=Window(...), wrapWidth=1)
+6.2292 	EXP 	Inst_1: autoDraw = True
+7.1359 	DATA 	Keypress: space
+7.4358 	DATA 	Keypress: space
+7.6857 	DATA 	Keypress: space
+8.0689 	DATA 	Keypress: return
+9.1520 	DATA 	Keypress: return
+9.4353 	DATA 	Keypress: return
+9.6685 	DATA 	Keypress: return
+9.9019 	DATA 	Keypress: space
+10.1351 	DATA 	Keypress: return
+10.1685 	DATA 	Keypress: space
+10.4018 	DATA 	Keypress: return
+10.4184 	DATA 	Keypress: space
+10.6184 	DATA 	Keypress: return
+10.6186 	DATA 	Keypress: space
+10.8185 	DATA 	Keypress: space
+10.8186 	DATA 	Keypress: return
+10.9684 	DATA 	Keypress: return
+10.9685 	DATA 	Keypress: space
+11.3018 	DATA 	Keypress: space
+11.3184 	DATA 	Keypress: return
+11.4850 	DATA 	Keypress: space
+11.6183 	DATA 	Keypress: return
+11.7682 	DATA 	Keypress: return
+11.9014 	DATA 	Keypress: return
+12.4180 	DATA 	Keypress: return
+12.4346 	DATA 	Keypress: lshift
+12.5845 	DATA 	Keypress: return
+12.7179 	DATA 	Keypress: return
+12.8680 	DATA 	Keypress: return
+13.6843 	DATA 	Keypress: escape
+13.7255 	EXP 	window1: mouseVisible = True

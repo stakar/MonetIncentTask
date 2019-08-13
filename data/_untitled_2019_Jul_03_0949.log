@@ -1,0 +1,56 @@
+1.5006 	WARNING 	Import Error: No module named 'psychtoolbox'. Using event module for keyboard component.
+1.5037 	WARNING 	User requested fullscreen with size [1024  768], but screen is actually [1920, 1080]. Using actual size
+2.4137 	EXP 	Created window1 = Window(allowGUI=False, allowStencil=False, args=UNKNOWN, autoLog=True, bitsMode=UNKNOWN, blendMode='avg', color=array([0., 0., 0.]), colorSpace='rgb', fullscr=<method-wrapper '__getattribute__' of attributeSetter object at 0x000001F39D57CE10>, gamma=None, kwargs=UNKNOWN, lms=UNKNOWN, monitor=<psychopy.monitors.calibTools.Monitor object at 0x000001F39D58F7F0>, multiSample=False, name='window1', numSamples=2, pos=[0.0, 0.0], screen=0, size=array([1920, 1080]), stereo=False, units='height', useFBO=True, useRetina=False, viewOri=0.0, viewPos=None, viewScale=None, waitBlanking=True, winType='pyglet')
+2.4137 	EXP 	window1: recordFrameIntervals = False
+2.5799 	EXP 	window1: recordFrameIntervals = True
+2.7633 	EXP 	window1: recordFrameIntervals = False
+2.8185 	EXP 	Created Fixation = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='Fixation', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='+', units='height', win=Window(...), wrapWidth=1)
+2.8322 	EXP 	Created Stimulus = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='Stimulus', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='Bodziec ', units='height', win=Window(...), wrapWidth=1)
+2.8325 	EXP 	Created test_mean = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='test_mean', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='', units='height', win=Window(...), wrapWidth=1)
+2.8342 	EXP 	Created Fixation = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='Fixation', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='+', units='height', win=Window(...), wrapWidth=1)
+2.8599 	EXP 	Created Bodziec = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='Bodziec', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='Any text\n\nincluding line breaks', units='height', win=Window(...), wrapWidth=1)
+2.8631 	EXP 	Created image = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='sin', interpolate=True, mask=None, maskParams=None, name='image', opacity=1.0, ori=0.0, pos=array([0., 0.]), size=array([0.5, 0.5]), texRes=128, units='height', win=Window(...))
+2.8634 	EXP 	Created sequence: random, trialTypes=1, nReps=5, seed=None
+2.8636 	EXP 	New trial (rep=0, index=0): None
+2.8690 	EXP 	Fixation: autoDraw = True
+3.8795 	EXP 	Fixation: autoDraw = False
+3.8795 	EXP 	Fixation: autoDraw = False
+3.8795 	EXP 	Stimulus: autoDraw = True
+5.9024 	DATA 	Keypress: space
+5.9031 	EXP 	New trial (rep=1, index=0): None
+5.9070 	EXP 	Stimulus: autoDraw = False
+5.9070 	EXP 	Fixation: autoDraw = True
+6.9121 	EXP 	Fixation: autoDraw = False
+6.9121 	EXP 	Fixation: autoDraw = False
+6.9121 	EXP 	Stimulus: autoDraw = True
+8.9211 	DATA 	Keypress: space
+8.9215 	EXP 	New trial (rep=2, index=0): None
+8.9254 	EXP 	Stimulus: autoDraw = False
+8.9254 	EXP 	Fixation: autoDraw = True
+9.9280 	EXP 	Fixation: autoDraw = False
+9.9280 	EXP 	Fixation: autoDraw = False
+9.9280 	EXP 	Stimulus: autoDraw = True
+11.9380 	DATA 	Keypress: space
+11.9389 	EXP 	New trial (rep=3, index=0): None
+11.9426 	EXP 	Stimulus: autoDraw = False
+11.9426 	EXP 	Fixation: autoDraw = True
+12.9440 	EXP 	Fixation: autoDraw = False
+12.9440 	EXP 	Fixation: autoDraw = False
+12.9440 	EXP 	Stimulus: autoDraw = True
+14.9555 	DATA 	Keypress: space
+14.9561 	EXP 	New trial (rep=4, index=0): None
+14.9610 	EXP 	Stimulus: autoDraw = False
+14.9610 	EXP 	Fixation: autoDraw = True
+15.9765 	EXP 	Fixation: autoDraw = False
+15.9765 	EXP 	Stimulus: autoDraw = True
+17.9881 	DATA 	Keypress: space
+17.9949 	EXP 	Stimulus: autoDraw = False
+17.9949 	EXP 	test_mean: autoDraw = True
+17.9949 	EXP 	test_mean: text = ''
+19.9928 	EXP 	Created sequence: random, trialTypes=1, nReps=5, seed=None
+19.9930 	EXP 	New trial (rep=0, index=0): None
+20.0089 	EXP 	test_mean: autoDraw = False
+20.0089 	EXP 	Fixation: autoDraw = True
+21.0089 	EXP 	Fixation: autoDraw = False
+21.0089 	EXP 	Bodziec: autoDraw = True
+23.0615 	EXP 	window1: mouseVisible = True

@@ -1,0 +1,7 @@
+﻿test.thisRepN,test.thisTrialN,test.thisN,test.thisIndex,Inst_1.started,Inst_1.stopped,key_resp_inst_1.keys,key_resp_inst_1.rt,key_resp_inst_1.started,key_resp_inst_1.stopped,Clear_screen.started,Clear_screen.stopped,Fixation.started,Fixation.stopped,Stimulus.started,Stimulus.stopped,test_resp.keys,test_resp.rt,test_resp.started,test_resp.stopped,participant,session,date,expName,psychopyVersion,frameRate,
+,,,,7.328501700001652,None,return,0.40775589999975637,7.328501700001652,None,,,,,,,,,,,1,001,2019_Jul_03_1433,MIT_Exp,3.1.2,59.99372465619719,
+0,0,0,0,,,,,,,7.75248940000165,None,9.768606900001032,None,10.251762600000802,None,space,0.23362919999999576,10.251762600000802,None,1,001,2019_Jul_03_1433,MIT_Exp,3.1.2,59.99372465619719,
+1,0,1,0,,,,,,,,,11.518238600001496,None,12.001369199999317,None,space,0.33341700000164565,12.001369199999317,None,1,001,2019_Jul_03_1433,MIT_Exp,3.1.2,59.99372465619719,
+2,0,2,0,,,,,,,,,13.36773180000091,None,13.850985000000946,None,space,0.28354549999858136,13.850985000000946,None,1,001,2019_Jul_03_1433,MIT_Exp,3.1.2,59.99372465619719,
+3,0,3,0,,,,,,,,,15.1674817000021,None,15.650629300002038,None,space,0.3168987000026391,15.650629300002038,None,1,001,2019_Jul_03_1433,MIT_Exp,3.1.2,59.99372465619719,
+4,0,4,0,,,,,,,,,17.000357600001735,None,17.483524100000068,None,space,0.2505858000004082,17.483524100000068,None,1,001,2019_Jul_03_1433,MIT_Exp,3.1.2,59.99372465619719,

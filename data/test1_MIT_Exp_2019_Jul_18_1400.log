@@ -1,0 +1,120 @@
+1.5368 	WARNING 	Import Error: No module named 'psychtoolbox'. Using event module for keyboard component.
+6.5116 	WARNING 	User requested fullscreen with size [1024  768], but screen is actually [1920, 1080]. Using actual size
+7.6016 	EXP 	Created window1 = Window(allowGUI=False, allowStencil=False, args=UNKNOWN, autoLog=True, bitsMode=UNKNOWN, blendMode='avg', color=array([0., 0., 0.]), colorSpace='rgb', fullscr=<method-wrapper '__getattribute__' of attributeSetter object at 0x000001CB4D6AF4E0>, gamma=None, kwargs=UNKNOWN, lms=UNKNOWN, monitor=<psychopy.monitors.calibTools.Monitor object at 0x000001CB4D705B00>, multiSample=False, name='window1', numSamples=2, pos=[0.0, 0.0], screen=0, size=array([1920, 1080]), stereo=False, units='height', useFBO=True, useRetina=False, viewOri=0.0, viewPos=None, viewScale=None, waitBlanking=True, winType='pyglet')
+7.6016 	EXP 	window1: recordFrameIntervals = False
+7.7678 	EXP 	window1: recordFrameIntervals = True
+7.9524 	EXP 	window1: recordFrameIntervals = False
+8.0501 	EXP 	Created Inst_1 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.07, italic=False, languageStyle='LTR', name='Inst_1', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='height', win=Window(...), wrapWidth=1)
+8.0512 	EXP 	Created Clear_screen = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='Clear_screen', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='', units='height', win=Window(...), wrapWidth=1)
+8.0588 	EXP 	Created Fixation = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='Fixation', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='+', units='height', win=Window(...), wrapWidth=1)
+8.1713 	EXP 	Created stimuli.jpg = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='stimuli.jpg', interpolate=True, mask=None, maskParams=None, name='stimuli.jpg', opacity=1.0, ori=0.0, pos=array([0., 0.]), size=array([0.5, 0.5]), texRes=128, units='height', win=Window(...))
+8.1867 	EXP 	Created Inst_2 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.07, italic=False, languageStyle='LTR', name='Inst_2', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='height', win=Window(...), wrapWidth=1)
+8.1888 	EXP 	Created Fixation = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='Fixation', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='+', units='height', win=Window(...), wrapWidth=1)
+8.2423 	EXP 	Created stimuli.jpg = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='stimuli.jpg', interpolate=True, mask=None, maskParams=None, name='stimuli.jpg', opacity=1.0, ori=0.0, pos=array([0., 0.]), size=array([0.5, 0.5]), texRes=128, units='height', win=Window(...))
+8.2441 	EXP 	Created image = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='sin', interpolate=True, mask=None, maskParams=None, name='image', opacity=1.0, ori=0.0, pos=array([0., 0.]), size=array([0.5, 0.5]), texRes=128, units='height', win=Window(...))
+8.2552 	EXP 	Created End = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='End', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='Koniec', units='height', win=Window(...), wrapWidth=1)
+8.2610 	EXP 	Inst_1: autoDraw = True
+8.5846 	DATA 	Keypress: return
+8.5852 	EXP 	Created sequence: random, trialTypes=1, nReps=10, seed=None
+8.5854 	EXP 	New trial (rep=0, index=0): None
+8.6009 	EXP 	Inst_1: autoDraw = False
+8.6009 	EXP 	Clear_screen: autoDraw = True
+8.6174 	EXP 	Clear_screen: autoDraw = False
+8.6174 	EXP 	Clear_screen: autoDraw = False
+9.6340 	EXP 	Fixation: autoDraw = True
+9.6340 	EXP 	Fixation: autoDraw = False
+9.6340 	EXP 	Fixation: autoDraw = False
+9.6340 	EXP 	stimuli.jpg: autoDraw = True
+9.9347 	DATA 	Keypress: m
+10.6337 	EXP 	stimuli.jpg: autoDraw = False
+11.6180 	EXP 	New trial (rep=1, index=0): None
+11.6334 	EXP 	stimuli.jpg: autoDraw = False
+11.6334 	EXP 	Clear_screen: autoDraw = True
+11.7169 	EXP 	Clear_screen: autoDraw = False
+11.7169 	EXP 	Clear_screen: autoDraw = False
+12.7332 	EXP 	Fixation: autoDraw = True
+12.7332 	EXP 	Fixation: autoDraw = False
+12.7332 	EXP 	Fixation: autoDraw = False
+12.7332 	EXP 	stimuli.jpg: autoDraw = True
+13.3503 	DATA 	Keypress: m
+13.7329 	EXP 	stimuli.jpg: autoDraw = False
+14.7169 	EXP 	New trial (rep=2, index=0): None
+14.7328 	EXP 	stimuli.jpg: autoDraw = False
+14.7328 	EXP 	Clear_screen: autoDraw = True
+14.7661 	EXP 	Clear_screen: autoDraw = False
+14.7661 	EXP 	Clear_screen: autoDraw = False
+15.7824 	EXP 	Fixation: autoDraw = True
+15.7824 	EXP 	Fixation: autoDraw = False
+15.7824 	EXP 	Fixation: autoDraw = False
+15.7824 	EXP 	stimuli.jpg: autoDraw = True
+16.1328 	DATA 	Keypress: m
+16.7822 	EXP 	stimuli.jpg: autoDraw = False
+17.3491 	DATA 	Keypress: escape
+17.4038 	EXP 	window1: mouseVisible = True
+1.5399 	WARNING 	Import Error: No module named 'psychtoolbox'. Using event module for keyboard component.
+8.8677 	WARNING 	User requested fullscreen with size [1024  768], but screen is actually [1920, 1080]. Using actual size
+9.7023 	EXP 	Created window1 = Window(allowGUI=False, allowStencil=False, args=UNKNOWN, autoLog=True, bitsMode=UNKNOWN, blendMode='avg', color=array([0., 0., 0.]), colorSpace='rgb', fullscr=<method-wrapper '__getattribute__' of attributeSetter object at 0x0000028F461E44A8>, gamma=None, kwargs=UNKNOWN, lms=UNKNOWN, monitor=<psychopy.monitors.calibTools.Monitor object at 0x0000028F46235B00>, multiSample=False, name='window1', numSamples=2, pos=[0.0, 0.0], screen=0, size=array([1920, 1080]), stereo=False, units='height', useFBO=True, useRetina=False, viewOri=0.0, viewPos=None, viewScale=None, waitBlanking=True, winType='pyglet')
+9.7023 	EXP 	window1: recordFrameIntervals = False
+9.8683 	EXP 	window1: recordFrameIntervals = True
+10.0519 	EXP 	window1: recordFrameIntervals = False
+10.1366 	EXP 	Created Inst_1 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.07, italic=False, languageStyle='LTR', name='Inst_1', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='height', win=Window(...), wrapWidth=1)
+10.1378 	EXP 	Created Clear_screen = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='Clear_screen', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='', units='height', win=Window(...), wrapWidth=1)
+10.1451 	EXP 	Created Fixation = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='Fixation', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='+', units='height', win=Window(...), wrapWidth=1)
+10.1753 	EXP 	Created stimuli.jpg = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='stimuli.jpg', interpolate=True, mask=None, maskParams=None, name='stimuli.jpg', opacity=1.0, ori=0.0, pos=array([0., 0.]), size=array([0.5, 0.5]), texRes=128, units='height', win=Window(...))
+10.1896 	EXP 	Created Inst_2 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.07, italic=False, languageStyle='LTR', name='Inst_2', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='height', win=Window(...), wrapWidth=1)
+10.1924 	EXP 	Created Fixation = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='Fixation', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='+', units='height', win=Window(...), wrapWidth=1)
+10.2204 	EXP 	Created stimuli.jpg = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='stimuli.jpg', interpolate=True, mask=None, maskParams=None, name='stimuli.jpg', opacity=1.0, ori=0.0, pos=array([0., 0.]), size=array([0.5, 0.5]), texRes=128, units='height', win=Window(...))
+10.2227 	EXP 	Created image = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='sin', interpolate=True, mask=None, maskParams=None, name='image', opacity=1.0, ori=0.0, pos=array([0., 0.]), size=array([0.5, 0.5]), texRes=128, units='height', win=Window(...))
+10.2329 	EXP 	Created End = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='End', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='Koniec', units='height', win=Window(...), wrapWidth=1)
+10.2383 	EXP 	Inst_1: autoDraw = True
+10.7018 	DATA 	Keypress: return
+10.7023 	EXP 	Created sequence: random, trialTypes=1, nReps=10, seed=None
+10.7025 	EXP 	New trial (rep=0, index=0): None
+10.7180 	EXP 	Inst_1: autoDraw = False
+10.7180 	EXP 	Clear_screen: autoDraw = True
+10.7513 	EXP 	Clear_screen: autoDraw = False
+10.7513 	EXP 	Clear_screen: autoDraw = False
+11.7675 	EXP 	Fixation: autoDraw = True
+12.2349 	DATA 	Keypress: space
+12.4174 	EXP 	Fixation: autoDraw = False
+12.4174 	EXP 	Fixation: autoDraw = False
+12.4174 	EXP 	stimuli.jpg: autoDraw = True
+13.4172 	EXP 	stimuli.jpg: autoDraw = False
+13.6010 	DATA 	Keypress: space
+13.6029 	EXP 	New trial (rep=1, index=0): None
+13.6173 	EXP 	stimuli.jpg: autoDraw = False
+13.6173 	EXP 	Clear_screen: autoDraw = True
+13.6340 	EXP 	Clear_screen: autoDraw = False
+13.6340 	EXP 	Clear_screen: autoDraw = False
+14.6504 	EXP 	Fixation: autoDraw = True
+14.6504 	EXP 	Fixation: autoDraw = False
+14.6504 	EXP 	Fixation: autoDraw = False
+14.6504 	EXP 	stimuli.jpg: autoDraw = True
+15.1505 	DATA 	Keypress: space
+15.1520 	EXP 	New trial (rep=2, index=0): None
+15.1669 	EXP 	stimuli.jpg: autoDraw = False
+15.1669 	EXP 	Clear_screen: autoDraw = True
+15.2002 	EXP 	Clear_screen: autoDraw = False
+15.2002 	EXP 	Clear_screen: autoDraw = False
+16.2166 	EXP 	Fixation: autoDraw = True
+16.2166 	EXP 	Fixation: autoDraw = False
+16.2166 	EXP 	Fixation: autoDraw = False
+16.2166 	EXP 	stimuli.jpg: autoDraw = True
+16.5668 	DATA 	Keypress: space
+16.5680 	EXP 	New trial (rep=3, index=0): None
+16.5833 	EXP 	stimuli.jpg: autoDraw = False
+16.5833 	EXP 	Clear_screen: autoDraw = True
+17.0497 	EXP 	Clear_screen: autoDraw = False
+17.0497 	EXP 	Clear_screen: autoDraw = False
+18.0661 	EXP 	Fixation: autoDraw = True
+18.0661 	EXP 	Fixation: autoDraw = False
+18.0661 	EXP 	Fixation: autoDraw = False
+18.0661 	EXP 	stimuli.jpg: autoDraw = True
+18.3664 	DATA 	Keypress: space
+18.3674 	EXP 	New trial (rep=4, index=0): None
+18.3830 	EXP 	stimuli.jpg: autoDraw = False
+18.3830 	EXP 	Clear_screen: autoDraw = True
+18.5328 	EXP 	Clear_screen: autoDraw = False
+18.5328 	EXP 	Clear_screen: autoDraw = False
+18.7663 	DATA 	Keypress: escape
+18.7909 	EXP 	window1: mouseVisible = True

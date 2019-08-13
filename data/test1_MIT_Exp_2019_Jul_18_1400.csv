@@ -1,0 +1,5 @@
+﻿test.thisRepN,test.thisTrialN,test.thisN,test.thisIndex,Inst_1.started,Inst_1.stopped,key_resp_inst_1.keys,key_resp_inst_1.rt,key_resp_inst_1.started,key_resp_inst_1.stopped,Clear_screen.started,Clear_screen.stopped,Fixation.started,Fixation.stopped,Stimulus.started,Stimulus.stopped,test_resp.keys,test_resp.started,test_resp.stopped,participant,session,date,expName,psychopyVersion,frameRate,
+,,,,8.260964699999931,None,return,0.32369440000002214,8.260964699999931,None,,,,,,,,,,test1,001,2019_Jul_18_1400,MIT_Exp,3.1.2,59.618311645150044,
+0,0,0,0,,,,,,,8.600854000000254,None,None,None,9.633951499999966,10.633684899999935,None,9.633951499999966,None,test1,001,2019_Jul_18_1400,MIT_Exp,3.1.2,59.618311645150044,
+1,0,1,0,,,,,,,11.633350699999937,None,None,None,12.73316849999992,13.732926600000155,None,12.73316849999992,None,test1,001,2019_Jul_18_1400,MIT_Exp,3.1.2,59.618311645150044,
+,,,,,,,,,,14.732754399999976,None,None,None,,,,,,,,,,,,

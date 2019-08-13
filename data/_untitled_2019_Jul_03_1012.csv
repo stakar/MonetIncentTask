@@ -1,0 +1,7 @@
+﻿test.thisRepN,test.thisTrialN,test.thisN,test.thisIndex,trials.thisRepN,trials.thisTrialN,trials.thisN,trials.thisIndex,Fixation.started,Fixation.stopped,Stimulus.started,Stimulus.stopped,test_resp.keys,test_resp.started,test_resp.stopped,test_mean.started,test_mean.stopped,Bodziec.started,Bodziec.stopped,key_resp.keys,key_resp.started,key_resp.stopped,participant,session,date,expName,psychopyVersion,frameRate,
+0,0,0,0,,,,,3.012203100000079,None,4.013259299999845,None,None,4.013259299999845,None,,,,,,,,,001,2019_Jul_03_1012,untitled,3.1.2,60.12683153868664,
+1,0,1,0,,,,,6.042852900000071,None,7.045819699999811,None,None,7.045819699999811,None,,,,,,,,,001,2019_Jul_03_1012,untitled,3.1.2,60.12683153868664,
+2,0,2,0,,,,,9.06559070000003,None,10.07842840000012,None,None,10.07842840000012,None,,,,,,,,,001,2019_Jul_03_1012,untitled,3.1.2,60.12683153868664,
+3,0,3,0,,,,,12.093752300000233,None,13.094357599999967,None,None,13.094357599999967,None,,,,,,,,,001,2019_Jul_03_1012,untitled,3.1.2,60.12683153868664,
+4,0,4,0,,,,,15.107425500000318,None,16.110287600000447,None,None,16.110287600000447,None,,,,,,,,,001,2019_Jul_03_1012,untitled,3.1.2,60.12683153868664,
+,,,,,,,,19.50941690000036,None,,,,,,18.125241599999754,None,20.50923590000002,22.508649299999888,None,20.50923590000002,22.508649299999888,,,,,,,
