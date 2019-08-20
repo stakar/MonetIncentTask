@@ -324,7 +324,7 @@ fixDuration = np.random.uniform(1.5,2.5)
 breakDuration = np.random.uniform(0.5,1)
 
 # set up handler to look after randomisation of conditions etc
-test = data.TrialHandler(nReps=3, method='random',
+test = data.TrialHandler(nReps=10, method='random',
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='test')
@@ -778,7 +778,7 @@ routineTimer.reset()
 #BELOW nREPs defines number of repetition in trial, change when you know how
 #many trials should be
 
-trial_block_1 = data.TrialHandler(nReps=10, method='random',
+trial_block_1 = data.TrialHandler(nReps=140, method='random',
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='trial_block_1')
