@@ -46,7 +46,7 @@ from numpy import (sin, cos, tan, log, log10, pi, average,
 from numpy.random import random, randint, normal, shuffle
 import os  # handy system and path functions
 import sys  # to get file system encoding
-
+from tools import *
 from psychopy.hardware import keyboard
 
 # Ensure that relative paths start from the same directory as this script
@@ -67,6 +67,7 @@ expInfo['psychopyVersion'] = psychopyVersion
 # Data file name stem = absolute path + name; later add .psyexp, .csv, .log, etc
 filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])
 
+too_fast = False
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
@@ -101,12 +102,27 @@ defaultKeyboard = keyboard.Keyboard()
 # Initialize components for Routine "Instrukcja_1"
 Instrukcja_1Clock = core.Clock()
 Inst_1 = visual.TextStim(win=win, name='Inst_1',
-    text='Wysłuchaj eksperymentatora. Za chwilę rozpocznie się sesja próbna',
+    text='W tej części badania będziemy mierzyli Twój czas reakcji. Twoim zadaniem będzie jak najszybsze naciśnięcie spacji, gdy na ekranie komputera wyświetli się biały kwadrat.\n \n'
+ 'Na końcu drugiej części zadania otrzymasz informację odnośnie tego, jak dobrze poradziłeś/aś sobie z jego wykonaniem w porównaniu do pozostałych uczestników badania. \n \n'
+'Jeśli masz jakieś pytania zawołaj osobę przeprowadzającą badanie.\n \n''Naciśnij Enter, aby rozpocząć pierwszą część tego zadania. ',
     font='Arial',
-    pos=(0, 0), height=0.07, wrapWidth=None, ori=0,
+    pos=(0, 0), height=0.04, wrapWidth=None, ori=0,
     color='white', colorSpace='rgb', opacity=1,
     languageStyle='LTR',
     depth=0.0);
+
+
+# Initialize components for Routine "Instrukcja_1"
+SCB = get_scoreboard('scores.txt')
+scoreBoardClock = core.Clock()
+scoreBoard = visual.TextStim(win=win, name='scoreBoard',
+    text=SCB,
+    font='Arial',
+    pos=(0, 0), height=0.045, wrapWidth=None, ori=0,
+    color='white', colorSpace='rgb', opacity=1,
+    languageStyle='LTR',
+    depth=0.0);
+
 
 # Initialize components for Routine "Przerwa"
 PrzerwaClock = core.Clock()
@@ -145,9 +161,15 @@ MeanClock = core.Clock()
 # Initialize components for Routine "Instrukcja_2"
 Instrukcja_2Clock = core.Clock()
 Inst_2 = visual.TextStim(win=win, name='Inst_2',
-    text='Koniec sesji próbnej. WYsłuchaj eksperymentatora ',
+    text='To jest koniec pierwszej części tego zadania. Przeczytaj instrukcję do części drugiej, a jeśli coś będzie niejasne lub będziesz miał jakieś pytania, zawołaj osobę przeprowadzającą badanie. \n \n'
+'W tej części zadania znowu będziesz musiał(a) jak najszybciej zareagować gdy na ekranie komputera pojawi się biały kwadrat. '
+'Tym razem jednak Twoim zadaniem będzie naciśnięcie spacji zanim kwadrat zniknie z ekranu.'
+'Jeśli Ci się to uda, na ekranie komputera wyświetli się emotikon uśmiechniętej twarzy. '
+'Jeśli naciśniesz spację zbyt wolno, pojawi się obrazek rozzłoszczonej twarzy. \n \n'
+'Postaraj się wykonać to zadanie najlepiej jak potrafisz. Jeśli otrzymasz wystarczająco wysoki wynik, trafisz na listę najlepszych graczy. \n \n'
+'Naciśnij Enter aby zobaczyć listę najlepszych graczy.',
     font='Arial',
-    pos=(0, 0), height=0.07, wrapWidth=None, ori=0,
+    pos=(0, 0), height=0.04, wrapWidth=None, ori=0,
     color='white', colorSpace='rgb', opacity=1,
     languageStyle='LTR',
     depth=0.0);
@@ -181,7 +203,7 @@ feedVal = [] #placeholder for feedback values, for deciding hardness
 
 feedbackClock = core.Clock()
 
-feedbackfile =['happy.png','sad.png','noReaction.png']
+feedbackfile =['happy.png','sad.png','noReaction.png','tooFast.png']
 
 msg= ""
 image = visual.ImageStim(
@@ -299,10 +321,10 @@ routineTimer.reset()
 
 #Duration of fixation point
 fixDuration = np.random.uniform(1.5,2.5)
-breakDuration = np.random.uniform(0.5,2.5)
+breakDuration = np.random.uniform(0.5,1)
 
 # set up handler to look after randomisation of conditions etc
-test = data.TrialHandler(nReps=10, method='random',
+test = data.TrialHandler(nReps=3, method='random',
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='test')
@@ -325,7 +347,8 @@ for thisTest in test:
     PrzerwaClock.reset()  # clock
     frameN = -1
     continueRoutine = True
-    routineTimer.add(1.000000)
+    # routineTimer.add(0.500000)
+    routineTimer.add(breakDuration)
     # update component parameters for each repeat
     # keep track of which components have finished
     PrzerwaComponents = [Clear_screen]
@@ -384,7 +407,7 @@ for thisTest in test:
             thisComponent.setAutoDraw(False)
     thisExp.addData('Clear_screen.started', Clear_screen.tStartRefresh)
     thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
-    breakDuration = np.random.randint(2,4)
+    breakDuration = np.random.uniform(1,2)
 
     #
     # # ------Prepare to start Routine "fix"-------
@@ -654,12 +677,108 @@ thisExp.nextEntry()
 # the Routine "Instrukcja_2" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
+
+
+#In case of moving,start here
+
+# ------Prepare to start Routine "scoreBoard"-------
+t = 0
+scoreBoardClock.reset()  # clock
+frameN = -1
+continueRoutine = True
+# update component parameters for each repeat
+key_resp_scoreBoard = keyboard.Keyboard()
+# keep track of which components have finished
+scoreBoardComponents = [scoreBoard, key_resp_scoreBoard]
+for thisComponent in scoreBoardComponents:
+    thisComponent.tStart = None
+    thisComponent.tStop = None
+    thisComponent.tStartRefresh = None
+    thisComponent.tStopRefresh = None
+    if hasattr(thisComponent, 'status'):
+        thisComponent.status = NOT_STARTED
+
+
+# -------Start Routine "scoreBoard"-------
+while continueRoutine:
+    # get current time
+    t = scoreBoardClock.getTime()
+    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    # update/draw components on each frame
+
+    # *scoreBoard* updates
+    if t >= 0.0 and scoreBoard.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        scoreBoard.tStart = t  # not accounting for scr refresh
+        scoreBoard.frameNStart = frameN  # exact frame index
+        win.timeOnFlip(scoreBoard, 'tStartRefresh')  # time at next scr refresh
+        scoreBoard.setAutoDraw(True)
+
+    # *key_resp_scoreBoard* updates
+    if t >= 0.0 and key_resp_scoreBoard.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        key_resp_scoreBoard.tStart = t  # not accounting for scr refresh
+        key_resp_scoreBoard.frameNStart = frameN  # exact frame index
+        win.timeOnFlip(key_resp_scoreBoard, 'tStartRefresh')  # time at next scr refresh
+        key_resp_scoreBoard.status = STARTED
+        # keyboard checking is just starting
+        win.callOnFlip(key_resp_scoreBoard.clock.reset)  # t=0 on next screen flip
+        key_resp_scoreBoard.clearEvents(eventType='keyboard')
+    if key_resp_scoreBoard.status == STARTED:
+        theseKeys = key_resp_scoreBoard.getKeys(keyList=['return'], waitRelease=False)
+        if len(theseKeys):
+            theseKeys = theseKeys[0]  # at least one key was pressed
+
+            # check for quit:
+            if "escape" == theseKeys:
+                endExpNow = True
+            key_resp_scoreBoard.keys = theseKeys.name  # just the last key pressed
+            key_resp_scoreBoard.rt = theseKeys.rt
+            # a response ends the routine
+            continueRoutine = False
+
+    # check for quit (typically the Esc key)
+    if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+        core.quit()
+
+    # check if all components have finished
+    if not continueRoutine:  # a component has requested a forced-end of Routine
+        break
+    continueRoutine = False  # will revert to True if at least one component still running
+    for thisComponent in scoreBoardComponents:
+        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+            continueRoutine = True
+            break  # at least one component has not yet finished
+
+    # refresh the screen
+    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+        win.flip()
+
+# -------Ending Routine "scoreBoard"-------
+for thisComponent in scoreBoardComponents:
+    if hasattr(thisComponent, "setAutoDraw"):
+        thisComponent.setAutoDraw(False)
+thisExp.addData('scoreBoard.started', scoreBoard.tStartRefresh)
+thisExp.addData('scoreBoard.stopped', scoreBoard.tStopRefresh)
+# check responses
+if key_resp_scoreBoard.keys in ['', [], None]:  # No response was made
+    key_resp_scoreBoard.keys = None
+thisExp.addData('key_resp_scoreBoard.keys',key_resp_scoreBoard.keys)
+if key_resp_inst_1.keys != None:  # we had a response
+    thisExp.addData('key_resp_inst_1.rt', key_resp_scoreBoard.rt)
+thisExp.addData('key_resp_scoreBoard.started', key_resp_scoreBoard.tStartRefresh)
+thisExp.addData('key_resp_scoreBoard.stopped', key_resp_scoreBoard.tStopRefresh)
+thisExp.nextEntry()
+# the Routine "Instrukcja_1" was not non-slip safe, so reset the non-slip timer
+routineTimer.reset()
+
+
 # set up handler to look after randomisation of conditions etc
 
 #BELOW nREPs defines number of repetition in trial, change when you know how
 #many trials should be
 
-trial_block_1 = data.TrialHandler(nReps=100, method='random',
+trial_block_1 = data.TrialHandler(nReps=10, method='random',
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='trial_block_1')
@@ -676,6 +795,27 @@ for thisTrial_block_1 in trial_block_1:
     if thisTrial_block_1 != None:
         for paramName in thisTrial_block_1:
             exec('{} = thisTrial_block_1[paramName]'.format(paramName))
+
+    # ------Prepare to start Routine "Przerwa"-------
+    t = 0
+    PrzerwaClock.reset()  # clock
+    frameN = -1
+    continueRoutine = True
+    # routineTimer.add(2.000000)
+    routineTimer.add(0.5)
+
+    # update component parameters for each repeat
+    key_resp2 = keyboard.Keyboard()
+    # keep track of which components have finished
+    PrzerwaComponents = [Clear_screen,key_resp2]
+    for thisComponent in PrzerwaComponents:
+        thisComponent.tStart = None
+        thisComponent.tStop = None
+        thisComponent.tStartRefresh = None
+        thisComponent.tStopRefresh = None
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+
     # -------Start Routine "Przerwa"-------
     while continueRoutine and routineTimer.getTime() > 0:
         # get current time
@@ -697,6 +837,39 @@ for thisTrial_block_1 in trial_block_1:
             Clear_screen.frameNStop = frameN  # exact frame index
             win.timeOnFlip(Clear_screen, 'tStopRefresh')  # time at next scr refresh
             Clear_screen.setAutoDraw(False)
+            theseKeys = key_resp2.getKeys(keyList=['space'], waitRelease=False)
+
+
+        # *key_resp* updates
+        if t >= 0.0 and key_resp2.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            key_resp2.tStart = t  # not accounting for scr refresh
+            key_resp2.frameNStart = frameN  # exact frame index
+            win.timeOnFlip(key_resp2, 'tStartRefresh')  # time at next scr refresh
+            key_resp2.status = STARTED
+            # keyboard checking is just starting
+            win.callOnFlip(key_resp2.clock.reset)  # t=0 on next screen flip
+            key_resp2.clearEvents(eventType='keyboard')
+        frameRemains = 0.0 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
+        if key_resp2.status == STARTED and t >= frameRemains:
+            # keep track of stop time/frame for later
+            key_resp2.tStop = t  # not accounting for scr refresh
+            key_resp2.frameNStop = frameN  # exact frame index
+            win.timeOnFlip(key_resp2, 'tStopRefresh')  # time at next scr refresh
+            key_resp2.status = FINISHED
+
+        if key_resp2.status == STARTED:
+            theseKeys = key_resp2.getKeys(keyList=['space'], waitRelease=False)
+            if len(theseKeys):
+                theseKeys = theseKeys[0]  # at least one key was pressed
+
+                # check for quit:
+                if "escape" == theseKeys:
+                    endExpNow = True
+                key_resp2.keys = theseKeys.name  # just the last key pressed
+                key_resp2.rt = theseKeys.rt
+                too_fast = True
+
 
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -715,7 +888,8 @@ for thisTrial_block_1 in trial_block_1:
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
             win.flip()
 
-        breakDuration = np.random.randint(1,10)
+        breakDuration = np.random.uniform(1,2)
+
 
     # -------Ending Routine "Przerwa"-------
     for thisComponent in PrzerwaComponents:
@@ -723,69 +897,69 @@ for thisTrial_block_1 in trial_block_1:
             thisComponent.setAutoDraw(False)
     thisExp.addData('Clear_screen.started', Clear_screen.tStartRefresh)
     thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
-
-    # ------Prepare to start Routine "fix"-------
-    t = 0
-    fixClock.reset()  # clock
-    frameN = -1
-    continueRoutine = True
-    routineTimer.add(1.500000)
-    # update component parameters for each repeat
-    # keep track of which components have finished
-    fixComponents = [Fixation]
-    for thisComponent in fixComponents:
-        thisComponent.tStart = None
-        thisComponent.tStop = None
-        thisComponent.tStartRefresh = None
-        thisComponent.tStopRefresh = None
-        if hasattr(thisComponent, 'status'):
-            thisComponent.status = NOT_STARTED
-
-    # -------Start Routine "fix"-------
-    while continueRoutine and routineTimer.getTime() > 0:
-        # get current time
-        t = fixClock.getTime()
-        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-        # update/draw components on each frame
-
-        # *Fixation* updates
-        if t >= 1 and Fixation.status == NOT_STARTED:
-            # keep track of start time/frame for later
-            Fixation.tStart = t  # not accounting for scr refresh
-            Fixation.frameNStart = frameN  # exact frame index
-            win.timeOnFlip(Fixation, 'tStartRefresh')  # time at next scr refresh
-            Fixation.setAutoDraw(True)
-        frameRemains = 1.5 - win.monitorFramePeriod * 0.75  # most of one frame period left
-        if Fixation.status == STARTED and t >= frameRemains:
-            # keep track of stop time/frame for later
-            Fixation.tStop = t  # not accounting for scr refresh
-            Fixation.frameNStop = frameN  # exact frame index
-            win.timeOnFlip(Fixation, 'tStopRefresh')  # time at next scr refresh
-            Fixation.setAutoDraw(False)
-
-        # check for quit (typically the Esc key)
-        if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
-            core.quit()
-
-        # check if all components have finished
-        if not continueRoutine:  # a component has requested a forced-end of Routine
-            break
-        continueRoutine = False  # will revert to True if at least one component still running
-        for thisComponent in fixComponents:
-            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                continueRoutine = True
-                break  # at least one component has not yet finished
-
-        # refresh the screen
-        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-            win.flip()
-
-    # -------Ending Routine "fix"-------
-    for thisComponent in fixComponents:
-        if hasattr(thisComponent, "setAutoDraw"):
-            thisComponent.setAutoDraw(False)
-    trial_block_1.addData('Fixation.started', Fixation.tStartRefresh)
-    trial_block_1.addData('Fixation.stopped', Fixation.tStopRefresh)
+    #
+    # # ------Prepare to start Routine "fix"-------
+    # t = 0
+    # fixClock.reset()  # clock
+    # frameN = -1
+    # continueRoutine = True
+    # routineTimer.add(1.500000)
+    # # update component parameters for each repeat
+    # # keep track of which components have finished
+    # fixComponents = [Fixation]
+    # for thisComponent in fixComponents:
+    #     thisComponent.tStart = None
+    #     thisComponent.tStop = None
+    #     thisComponent.tStartRefresh = None
+    #     thisComponent.tStopRefresh = None
+    #     if hasattr(thisComponent, 'status'):
+    #         thisComponent.status = NOT_STARTED
+    #
+    # # -------Start Routine "fix"-------
+    # while continueRoutine and routineTimer.getTime() > 0:
+    #     # get current time
+    #     t = fixClock.getTime()
+    #     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    #     # update/draw components on each frame
+    #
+    #     # *Fixation* updates
+    #     if t >= 1 and Fixation.status == NOT_STARTED:
+    #         # keep track of start time/frame for later
+    #         Fixation.tStart = t  # not accounting for scr refresh
+    #         Fixation.frameNStart = frameN  # exact frame index
+    #         win.timeOnFlip(Fixation, 'tStartRefresh')  # time at next scr refresh
+    #         Fixation.setAutoDraw(True)
+    #     frameRemains = 1.5 - win.monitorFramePeriod * 0.75  # most of one frame period left
+    #     if Fixation.status == STARTED and t >= frameRemains:
+    #         # keep track of stop time/frame for later
+    #         Fixation.tStop = t  # not accounting for scr refresh
+    #         Fixation.frameNStop = frameN  # exact frame index
+    #         win.timeOnFlip(Fixation, 'tStopRefresh')  # time at next scr refresh
+    #         Fixation.setAutoDraw(False)
+    #
+    #     # check for quit (typically the Esc key)
+    #     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+    #         core.quit()
+    #
+    #     # check if all components have finished
+    #     if not continueRoutine:  # a component has requested a forced-end of Routine
+    #         break
+    #     continueRoutine = False  # will revert to True if at least one component still running
+    #     for thisComponent in fixComponents:
+    #         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+    #             continueRoutine = True
+    #             break  # at least one component has not yet finished
+    #
+    #     # refresh the screen
+    #     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+    #         win.flip()
+    #
+    # # -------Ending Routine "fix"-------
+    # for thisComponent in fixComponents:
+    #     if hasattr(thisComponent, "setAutoDraw"):
+    #         thisComponent.setAutoDraw(False)
+    # trial_block_1.addData('Fixation.started', Fixation.tStartRefresh)
+    # trial_block_1.addData('Fixation.stopped', Fixation.tStopRefresh)
 
     # ------Prepare to start Routine "Trial_2"-------
     t = 0
@@ -806,7 +980,7 @@ for thisTrial_block_1 in trial_block_1:
             thisComponent.status = NOT_STARTED
 
     # -------Start Routine "Trial_2"-------
-    while continueRoutine and routineTimer.getTime() > 0:
+    while continueRoutine and routineTimer.getTime() > 0 and too_fast != True:
         # get current time
         t = Trial_2Clock.getTime()
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
@@ -815,7 +989,7 @@ for thisTrial_block_1 in trial_block_1:
         # *Bodziec* updates
         if t >= 0.0 and Bodziec.status == NOT_STARTED:
             # keep track of start time/frame for later
-            Bodziec.tStart = t  # not accounting for scr refresh
+            Bodziec.tStart = t  # not accounting for scr  refresh
             Bodziec.frameNStart = frameN  # exact frame index
             win.timeOnFlip(Bodziec, 'tStartRefresh')  # time at next scr refresh
             Bodziec.setAutoDraw(True)
@@ -845,6 +1019,33 @@ for thisTrial_block_1 in trial_block_1:
             key_resp.frameNStop = frameN  # exact frame index
             win.timeOnFlip(key_resp, 'tStopRefresh')  # time at next scr refresh
             key_resp.status = FINISHED
+
+        # if key_resp.status == NOT_STARTED and Bodziec.status == NOT_STARTED:
+        #     theseKeys = key_resp.getKeys(keyList=['space'], waitRelease=False)
+        #     if len(theseKeys):
+        #         print("Jest \n")
+        #         theseKeys = theseKeys[0]  # at least one key was pressed
+        #
+        #         # check for quit:
+        #         if "escape" == theseKeys:
+        #             endExpNow = True
+        #         key_resp.keys = theseKeys.name  # just the last key pressed
+        #         key_resp.rt = theseKeys.rt
+        #         # a response ends the routine
+        #         print(test_resp.rt) #print response, testing purposes
+        #         meanRT.append(test_resp.rt) #append response to previous ones
+        #         baseline = np.mean(meanRT) #calculate new baseline
+        #         print(baseline)
+        #         continueRoutine = False
+        #         too_fast = True
+        #         # keep track of stop time/frame for later
+        #         key_resp.tStop = t  # not accounting for scr refresh
+        #         key_resp.frameNStop = frameN  # exact frame index
+        #         win.timeOnFlip(key_resp, 'tStopRefresh')  # time at next scr refresh
+        #         key_resp.status = FINISHED
+        #         Bodziec.tStop = t
+        #         too_fast = True
+
         if key_resp.status == STARTED:
             theseKeys = key_resp.getKeys(keyList=['space'], waitRelease=False)
             if len(theseKeys):
@@ -968,16 +1169,23 @@ for thisTrial_block_1 in trial_block_1:
     routineTimer.add(2.000000)
     # update component parameters for each repeat
     print(key_resp.rt)
-    if key_resp.rt != list(): #test if there was response
-        if key_resp.rt < duration:
-            fdb = feedbackfile[0] #positive feedback
-            feedVal.append(1)
-        else:
-            fdb = feedbackfile[1] #negative feedback
-            feedVal.append(0)
-    else:
-        fdb = feedbackfile[2] #no-response feedback
+
+    if too_fast == True:
+        fdb = feedbackfile[3] #reaction before stimuli
         feedVal.append(0)
+        too_fast = False
+    else:
+        if key_resp.rt != list(): #test if there was response
+            if key_resp.rt < duration:
+                fdb = feedbackfile[0] #positive feedback
+                feedVal.append(1)
+            else:
+                fdb = feedbackfile[1] #negative feedback
+                feedVal.append(0)
+        else:
+            fdb = feedbackfile[2] #no-response feedback
+            feedVal.append(0)
+
 
     image.setImage(fdb)
     # keep track of which components have finished
@@ -1043,6 +1251,13 @@ for thisTrial_block_1 in trial_block_1:
     thisExp.nextEntry()
 
 # completed 5 repeats of 'trial_block_1'
+
+print(feedVal)
+print('Procent poprawnych odpowiedzi: {}%'.format((np.count_nonzero(feedVal)/len(feedVal)*100)))
+
+print('Participant is {}'.format(expInfo['participant']))
+
+save_score('scores.txt',expInfo['participant'],baseline)
 
 
 # ------Prepare to start Routine "Koniec"-------
@@ -1138,9 +1353,6 @@ routineTimer.reset()
 # Flip one final time so any remaining win.callOnFlip()
 # and win.timeOnFlip() tasks get executed before quitting
 win.flip()
-
-print(feedVal)
-print('Procent poprawnych odpowiedzi: {}%'.format((np.count_nonzero(feedVal)/len(feedVal)*100)))
 
 # these shouldn't be strictly necessary (should auto-save)
 thisExp.saveAsWideText(filename+'.csv')
