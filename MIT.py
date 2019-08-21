@@ -88,7 +88,7 @@ win = visual.Window(
     winType='pyglet', allowGUI=False, allowStencil=False,
     monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
     blendMode='avg', useFBO=True,
-    units='height')
+    units='deg')
 # store frame rate of monitor if we can measure it
 expInfo['frameRate'] = win.getActualFrameRate()
 if expInfo['frameRate'] != None:
@@ -106,7 +106,7 @@ Inst_1 = visual.TextStim(win=win, name='Inst_1',
  'Na końcu drugiej części zadania otrzymasz informację odnośnie tego, jak dobrze poradziłeś/aś sobie z jego wykonaniem w porównaniu do pozostałych uczestników badania. \n \n'
 'Jeśli masz jakieś pytania zawołaj osobę przeprowadzającą badanie.\n \n''Naciśnij Enter, aby rozpocząć pierwszą część tego zadania. ',
     font='Arial',
-    pos=(0, 0), height=0.04, wrapWidth=None, ori=0,
+    pos=(0, 0), height=1, wrapWidth=20,ori=0,
     color='white', colorSpace='rgb', opacity=1,
     languageStyle='LTR',
     depth=0.0);
@@ -118,7 +118,7 @@ scoreBoardClock = core.Clock()
 scoreBoard = visual.TextStim(win=win, name='scoreBoard',
     text=SCB,
     font='Arial',
-    pos=(0, 0), height=0.045, wrapWidth=None, ori=0,
+    pos=(0, 0), height=1, wrapWidth=20, ori=0,
     color='white', colorSpace='rgb', opacity=1,
     languageStyle='LTR',
     depth=0.0);
@@ -129,17 +129,7 @@ PrzerwaClock = core.Clock()
 Clear_screen = visual.TextStim(win=win, name='Clear_screen',
     text=None,
     font='Arial',
-    pos=(0, 0), height=0.1, wrapWidth=None, ori=0,
-    color='white', colorSpace='rgb', opacity=1,
-    languageStyle='LTR',
-    depth=0.0);
-
-# Initialize components for Routine "fix"
-fixClock = core.Clock()
-Fixation = visual.TextStim(win=win, name='Fixation',
-    text='+',
-    font='Arial',
-    pos=(0, 0), height=0.1, wrapWidth=None, ori=0,
+    pos=(0, 0), height=1, wrapWidth=None, ori=0,
     color='white', colorSpace='rgb', opacity=1,
     languageStyle='LTR',
     depth=0.0);
@@ -150,7 +140,7 @@ Stimulus = visual.ImageStim(
         win=win,
         name='stimuli.jpg',
         image='stimuli.jpg', mask=None,
-        ori=0, pos=(0, 0), size=(0.5, 0.5),
+        ori=0, pos=(0, 0), size=(10, 10),
         color=[1,1,1], colorSpace='rgb', opacity=1,
         flipHoriz=False, flipVert=False,
         texRes=128, interpolate=True, depth=-1.0)
@@ -169,17 +159,7 @@ Inst_2 = visual.TextStim(win=win, name='Inst_2',
 'Postaraj się wykonać to zadanie najlepiej jak potrafisz. Jeśli otrzymasz wystarczająco wysoki wynik, trafisz na listę najlepszych graczy. \n \n'
 'Naciśnij Enter aby zobaczyć listę najlepszych graczy.',
     font='Arial',
-    pos=(0, 0), height=0.04, wrapWidth=None, ori=0,
-    color='white', colorSpace='rgb', opacity=1,
-    languageStyle='LTR',
-    depth=0.0);
-
-# Initialize components for Routine "fix"
-fixClock = core.Clock()
-Fixation = visual.TextStim(win=win, name='Fixation',
-    text='+',
-    font='Arial',
-    pos=(0, 0), height=0.1, wrapWidth=None, ori=0,
+    pos=(0, 0), height=1, wrapWidth=20, ori=0,
     color='white', colorSpace='rgb', opacity=1,
     languageStyle='LTR',
     depth=0.0);
@@ -190,7 +170,7 @@ Bodziec = visual.ImageStim(
     win=win,
     name='stimuli.jpg',
     image='stimuli.jpg', mask=None,
-    ori=0, pos=(0, 0), size=(0.5, 0.5),
+    ori=0, pos=(0, 0), size=(10, 10),
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-1.0)
@@ -210,7 +190,7 @@ image = visual.ImageStim(
     win=win,
     name='image',
     image='sin', mask=None,
-    ori=0, pos=(0, 0), size=(0.5, 0.5),
+    ori=0, pos=(0, 0), size=(10, 10),
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-1.0)
@@ -220,7 +200,7 @@ KoniecClock = core.Clock()
 End = visual.TextStim(win=win, name='End',
     text='Koniec',
     font='Arial',
-    pos=(0, 0), height=0.1, wrapWidth=None, ori=0,
+    pos=(0, 0), height=1, wrapWidth=None, ori=0,
     color='white', colorSpace='rgb', opacity=1,
     languageStyle='LTR',
     depth=0.0);
@@ -319,12 +299,11 @@ thisExp.nextEntry()
 # the Routine "Instrukcja_1" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
-#Duration of fixation point
-fixDuration = np.random.uniform(1.5,2.5)
+#Duration of break
 breakDuration = np.random.uniform(0.5,1)
 
 # set up handler to look after randomisation of conditions etc
-test = data.TrialHandler(nReps=10, method='random',
+test = data.TrialHandler(nReps=3, method='random',
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='test')
@@ -409,70 +388,6 @@ for thisTest in test:
     thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
     breakDuration = np.random.uniform(1,2)
 
-    #
-    # # ------Prepare to start Routine "fix"-------
-    # t = 0
-    # fixClock.reset()  # clock
-    # frameN = -1
-    # continueRoutine = True
-    # routineTimer.add(1.500000)
-    # # update component parameters for each repeat
-    # # keep track of which components have finished
-    # fixComponents = [Fixation]
-    # for thisComponent in fixComponents:
-    #     thisComponent.tStart = None
-    #     thisComponent.tStop = None
-    #     thisComponent.tStartRefresh = None
-    #     thisComponent.tStopRefresh = None
-    #     if hasattr(thisComponent, 'status'):
-    #         thisComponent.status = NOT_STARTED
-    #
-    # # -------Start Routine "fix"-------
-    # while continueRoutine and routineTimer.getTime() > 0:
-    #     # get current time
-    #     t = fixClock.getTime()
-    #     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-    #     # update/draw components on each frame
-    #
-    #     # *Fixation* updates
-    #     if t >= 1 and Fixation.status == NOT_STARTED:
-    #         # keep track of start time/frame for later
-    #         Fixation.tStart = t  # not accounting for scr refresh
-    #         Fixation.frameNStart = frameN  # exact frame index
-    #         win.timeOnFlip(Fixation, 'tStartRefresh')  # time at next scr refresh
-    #         Fixation.setAutoDraw(True)
-    #     frameRemains = fixDuration - win.monitorFramePeriod * 0.75  # most of one frame period left
-    #     if Fixation.status == STARTED and t >= frameRemains:
-    #         # keep track of stop time/frame for later
-    #         Fixation.tStop = t  # not accounting for scr refresh
-    #         Fixation.frameNStop = frameN  # exact frame index
-    #         win.timeOnFlip(Fixation, 'tStopRefresh')  # time at next scr refresh
-    #         Fixation.setAutoDraw(False)
-    #
-    #     # check for quit (typically the Esc key)
-    #     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
-    #         core.quit()
-    #
-    #     # check if all components have finished
-    #     if not continueRoutine:  # a component has requested a forced-end of Routine
-    #         break
-    #     continueRoutine = False  # will revert to True if at least one component still running
-    #     for thisComponent in fixComponents:
-    #         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-    #             continueRoutine = True
-    #             break  # at least one component has not yet finished
-    #
-    #     # refresh the screen
-    #     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-    #         win.flip()
-    #
-    # # -------Ending Routine "fix"-------
-    # for thisComponent in fixComponents:
-    #     if hasattr(thisComponent, "setAutoDraw"):
-    #         thisComponent.setAutoDraw(False)
-    # test.addData('Fixation.started', Fixation.tStartRefresh)
-    # test.addData('Fixation.stopped', Fixation.tStopRefresh)
-    # fixDuration = np.random.uniform(1.5,2.5)
 
     # ------Prepare to start Routine "Trial_1"-------
     t = 0
@@ -778,7 +693,7 @@ routineTimer.reset()
 #BELOW nREPs defines number of repetition in trial, change when you know how
 #many trials should be
 
-trial_block_1 = data.TrialHandler(nReps=140, method='random',
+trial_block_1 = data.TrialHandler(nReps=10, method='random',
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='trial_block_1')
@@ -897,69 +812,7 @@ for thisTrial_block_1 in trial_block_1:
             thisComponent.setAutoDraw(False)
     thisExp.addData('Clear_screen.started', Clear_screen.tStartRefresh)
     thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
-    #
-    # # ------Prepare to start Routine "fix"-------
-    # t = 0
-    # fixClock.reset()  # clock
-    # frameN = -1
-    # continueRoutine = True
-    # routineTimer.add(1.500000)
-    # # update component parameters for each repeat
-    # # keep track of which components have finished
-    # fixComponents = [Fixation]
-    # for thisComponent in fixComponents:
-    #     thisComponent.tStart = None
-    #     thisComponent.tStop = None
-    #     thisComponent.tStartRefresh = None
-    #     thisComponent.tStopRefresh = None
-    #     if hasattr(thisComponent, 'status'):
-    #         thisComponent.status = NOT_STARTED
-    #
-    # # -------Start Routine "fix"-------
-    # while continueRoutine and routineTimer.getTime() > 0:
-    #     # get current time
-    #     t = fixClock.getTime()
-    #     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-    #     # update/draw components on each frame
-    #
-    #     # *Fixation* updates
-    #     if t >= 1 and Fixation.status == NOT_STARTED:
-    #         # keep track of start time/frame for later
-    #         Fixation.tStart = t  # not accounting for scr refresh
-    #         Fixation.frameNStart = frameN  # exact frame index
-    #         win.timeOnFlip(Fixation, 'tStartRefresh')  # time at next scr refresh
-    #         Fixation.setAutoDraw(True)
-    #     frameRemains = 1.5 - win.monitorFramePeriod * 0.75  # most of one frame period left
-    #     if Fixation.status == STARTED and t >= frameRemains:
-    #         # keep track of stop time/frame for later
-    #         Fixation.tStop = t  # not accounting for scr refresh
-    #         Fixation.frameNStop = frameN  # exact frame index
-    #         win.timeOnFlip(Fixation, 'tStopRefresh')  # time at next scr refresh
-    #         Fixation.setAutoDraw(False)
-    #
-    #     # check for quit (typically the Esc key)
-    #     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
-    #         core.quit()
-    #
-    #     # check if all components have finished
-    #     if not continueRoutine:  # a component has requested a forced-end of Routine
-    #         break
-    #     continueRoutine = False  # will revert to True if at least one component still running
-    #     for thisComponent in fixComponents:
-    #         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-    #             continueRoutine = True
-    #             break  # at least one component has not yet finished
-    #
-    #     # refresh the screen
-    #     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-    #         win.flip()
-    #
-    # # -------Ending Routine "fix"-------
-    # for thisComponent in fixComponents:
-    #     if hasattr(thisComponent, "setAutoDraw"):
-    #         thisComponent.setAutoDraw(False)
-    # trial_block_1.addData('Fixation.started', Fixation.tStartRefresh)
-    # trial_block_1.addData('Fixation.stopped', Fixation.tStopRefresh)
+
 
     # ------Prepare to start Routine "Trial_2"-------
     t = 0
@@ -1020,31 +873,6 @@ for thisTrial_block_1 in trial_block_1:
             win.timeOnFlip(key_resp, 'tStopRefresh')  # time at next scr refresh
             key_resp.status = FINISHED
 
-        # if key_resp.status == NOT_STARTED and Bodziec.status == NOT_STARTED:
-        #     theseKeys = key_resp.getKeys(keyList=['space'], waitRelease=False)
-        #     if len(theseKeys):
-        #         print("Jest \n")
-        #         theseKeys = theseKeys[0]  # at least one key was pressed
-        #
-        #         # check for quit:
-        #         if "escape" == theseKeys:
-        #             endExpNow = True
-        #         key_resp.keys = theseKeys.name  # just the last key pressed
-        #         key_resp.rt = theseKeys.rt
-        #         # a response ends the routine
-        #         print(test_resp.rt) #print response, testing purposes
-        #         meanRT.append(test_resp.rt) #append response to previous ones
-        #         baseline = np.mean(meanRT) #calculate new baseline
-        #         print(baseline)
-        #         continueRoutine = False
-        #         too_fast = True
-        #         # keep track of stop time/frame for later
-        #         key_resp.tStop = t  # not accounting for scr refresh
-        #         key_resp.frameNStop = frameN  # exact frame index
-        #         win.timeOnFlip(key_resp, 'tStopRefresh')  # time at next scr refresh
-        #         key_resp.status = FINISHED
-        #         Bodziec.tStop = t
-        #         too_fast = True
 
         if key_resp.status == STARTED:
             theseKeys = key_resp.getKeys(keyList=['space'], waitRelease=False)
