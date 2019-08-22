@@ -134,6 +134,18 @@ Clear_screen = visual.TextStim(win=win, name='Clear_screen',
     languageStyle='LTR',
     depth=0.0);
 
+# Initialize components for Routine "fix"
+fixClock = core.Clock()
+Fixation = visual.TextStim(win=win, name='Fixation',
+    text='+',
+    font='Arial',
+    pos=(0, 0), height=1, wrapWidth=None, ori=0,
+    color='white', colorSpace='rgb', opacity=1,
+    languageStyle='LTR',
+    depth=0.0);
+
+fixDuration = np.random.uniform(1.5,2.5)
+
 # Initialize components for Routine "Trial_1"
 Trial_1Clock = core.Clock()
 Stimulus = visual.ImageStim(
@@ -765,7 +777,7 @@ for thisTrial_block_1 in trial_block_1:
             # keyboard checking is just starting
             win.callOnFlip(key_resp2.clock.reset)  # t=0 on next screen flip
             key_resp2.clearEvents(eventType='keyboard')
-        frameRemains = 0.0 + 2- win.monitorFramePeriod * 0.75  # most of one frame period left
+        frameRemains = 0.0 + breakDuration - win.monitorFramePeriod * 0.75  # most of one frame period left
         if key_resp2.status == STARTED and t >= frameRemains:
             # keep track of stop time/frame for later
             key_resp2.tStop = t  # not accounting for scr refresh
@@ -812,6 +824,103 @@ for thisTrial_block_1 in trial_block_1:
             thisComponent.setAutoDraw(False)
     thisExp.addData('Clear_screen.started', Clear_screen.tStartRefresh)
     thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
+
+    # ------Prepare to start Routine "fix"-------
+    t = 0
+    fixClock.reset()  # clock
+    frameN = -1
+    continueRoutine = True
+    routineTimer.add(1.500000)
+    key_resp2 = keyboard.Keyboard()
+    # update component parameters for each repeat
+    # keep track of which components have finished
+    fixComponents = [Fixation,key_resp2]
+    for thisComponent in fixComponents:
+        thisComponent.tStart = None
+        thisComponent.tStop = None
+        thisComponent.tStartRefresh = None
+        thisComponent.tStopRefresh = None
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+
+    # -------Start Routine "fix"-------
+    while continueRoutine and routineTimer.getTime() > 0:
+        # get current time
+        t = fixClock.getTime()
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+
+        # *Fixation* updates
+        if t >= 1 and Fixation.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            Fixation.tStart = t  # not accounting for scr refresh
+            Fixation.frameNStart = frameN  # exact frame index
+            win.timeOnFlip(Fixation, 'tStartRefresh')  # time at next scr refresh
+            Fixation.setAutoDraw(True)
+        frameRemains = fixDuration - win.monitorFramePeriod * 0.75  # most of one frame period left
+        if Fixation.status == STARTED and t >= frameRemains:
+            # keep track of stop time/frame for later
+            Fixation.tStop = t  # not accounting for scr refresh
+            Fixation.frameNStop = frameN  # exact frame index
+            win.timeOnFlip(Fixation, 'tStopRefresh')  # time at next scr refresh
+            Fixation.setAutoDraw(False)
+
+        # *key_resp* updates
+        if t >= 0.0 and key_resp2.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            key_resp2.tStart = t  # not accounting for scr refresh
+            key_resp2.frameNStart = frameN  # exact frame index
+            win.timeOnFlip(key_resp2, 'tStartRefresh')  # time at next scr refresh
+            key_resp2.status = STARTED
+            # keyboard checking is just starting
+            win.callOnFlip(key_resp2.clock.reset)  # t=0 on next screen flip
+            key_resp2.clearEvents(eventType='keyboard')
+        frameRemains = fixDuration - win.monitorFramePeriod * 0.75  # most of one frame period left
+        if key_resp2.status == STARTED and t >= frameRemains:
+            # keep track of stop time/frame for later
+            key_resp2.tStop = t  # not accounting for scr refresh
+            key_resp2.frameNStop = frameN  # exact frame index
+            win.timeOnFlip(key_resp2, 'tStopRefresh')  # time at next scr refresh
+            key_resp2.status = FINISHED
+
+        if key_resp2.status == STARTED:
+            theseKeys = key_resp2.getKeys(keyList=['space'], waitRelease=False)
+            if len(theseKeys):
+                theseKeys = theseKeys[0]  # at least one key was pressed
+
+                # check for quit:
+                if "escape" == theseKeys:
+                    endExpNow = True
+                key_resp2.keys = theseKeys.name  # just the last key pressed
+                key_resp2.rt = theseKeys.rt
+                too_fast = True
+
+
+
+        # check for quit (typically the Esc key)
+        if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+            core.quit()
+
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in fixComponents:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+
+    # -------Ending Routine "fix"-------
+    for thisComponent in fixComponents:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    trial_block_1.addData('Fixation.started', Fixation.tStartRefresh)
+    trial_block_1.addData('Fixation.stopped', Fixation.tStopRefresh)
+    fixDuration = np.random.uniform(1,2)
 
 
     # ------Prepare to start Routine "Trial_2"-------
