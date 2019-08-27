@@ -83,12 +83,21 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 # Start Code - component code to be run before the window creation
 
 # Setup the Window
-win = visual.Window(
-    size=(1024, 768), fullscr=True, screen=0,
-    winType='pyglet', allowGUI=False, allowStencil=False,
-    monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
-    blendMode='avg', useFBO=True,
-    units='deg')
+
+# win = visual.Window(
+#     size=(1024, 768), fullscr=True, screen=0,
+#     winType='pyglet', allowGUI=False, allowStencil=False,
+#     monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
+#     blendMode='avg', useFBO=True,
+    # units='deg')
+
+# Sometimes the code above works, sometimes one needs to use the one below
+
+win = visual.Window([1920,1080],fullscr=True, allowGUI=True,
+monitor='default_monitor', units='deg', color=[0,0,0])
+# size of the window in pixels (X,Y), should at least match the .bmp files that are presented
+
+
 # store frame rate of monitor if we can measure it
 expInfo['frameRate'] = win.getActualFrameRate()
 if expInfo['frameRate'] != None:
