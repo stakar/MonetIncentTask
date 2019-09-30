@@ -128,16 +128,28 @@ Inst_1 = visual.TextStim(win=win, name='Inst_1',
     depth=0.0);
 
 
-# Initialize components for Routine "Scoreboard"
-SCB = get_scoreboard('scores.txt')
+# Initialize components for Routine "Instrukcja_1"
+SCBText,SCB = get_scoreboard('scores.txt')
 scoreBoardClock = core.Clock()
 scoreBoard = visual.TextStim(win=win, name='scoreBoard',
-    text=SCB,
+    text=SCBText,
     font='Arial',
     pos=(0, 0), height=1, wrapWidth=20, ori=0,
     color='white', colorSpace='rgb', opacity=1,
     languageStyle='LTR',
     depth=0.0);
+
+
+# Initialize components for Routine "Instrukcja_1"
+scoreBoardClock = core.Clock()
+scoreBoardFinal = visual.TextStim(win=win, name='scoreBoard',
+    text='Wut',
+    font='Arial',
+    pos=(0, 0), height=1, wrapWidth=20, ori=0,
+    color='white', colorSpace='rgb', opacity=1,
+    languageStyle='LTR',
+    depth=0.0);
+
 
 
 # Initialize components for Routine "Przerwa"
@@ -1219,22 +1231,15 @@ for thisTrial_block_1 in trial_block_1:
 print(feedVal)
 print('Procent poprawnych odpowiedzi: {}%'.format((np.count_nonzero(feedVal)/len(feedVal)*100)))
 
-print('Participant is {}'.format(expInfo['participant']))
-
 save_score('scores.txt',expInfo['participant'],baseline)
 
 
-# Initialize components for Routine "Scoreboard"
-SCB = get_scoreboard('scores.txt')
-scoreBoardClock = core.Clock()
-scoreBoard = visual.TextStim(win=win, name='scoreBoard',
-    text=SCB,
-    font='Arial',
-    pos=(0, 0), height=1, wrapWidth=20, ori=0,
-    color='white', colorSpace='rgb', opacity=1,
-    languageStyle='LTR',
-    depth=0.0);
+#In case of moving,start here
 
+SCB = np.append(SCB,baseline)
+worst = int((1-np.where(SCB == baseline)[0][0]/len(SCB))*100)
+
+scoreBoardFinal.setText('Udało Ci się wykonać zadanie lepiej niż {}% badanych'.format(worst))
 
 # ------Prepare to start Routine "scoreBoard"-------
 t = 0
@@ -1244,7 +1249,7 @@ continueRoutine = True
 # update component parameters for each repeat
 key_resp_scoreBoard = keyboard.Keyboard()
 # keep track of which components have finished
-scoreBoardComponents = [scoreBoard, key_resp_scoreBoard]
+scoreBoardComponents = [scoreBoardFinal, key_resp_scoreBoard]
 for thisComponent in scoreBoardComponents:
     thisComponent.tStart = None
     thisComponent.tStop = None
@@ -1252,7 +1257,6 @@ for thisComponent in scoreBoardComponents:
     thisComponent.tStopRefresh = None
     if hasattr(thisComponent, 'status'):
         thisComponent.status = NOT_STARTED
-
 
 # -------Start Routine "scoreBoard"-------
 while continueRoutine:
@@ -1262,12 +1266,12 @@ while continueRoutine:
     # update/draw components on each frame
 
     # *scoreBoard* updates
-    if t >= 0.0 and scoreBoard.status == NOT_STARTED:
+    if t >= 0.0 and scoreBoardFinal.status == NOT_STARTED:
         # keep track of start time/frame for later
         scoreBoard.tStart = t  # not accounting for scr refresh
         scoreBoard.frameNStart = frameN  # exact frame index
-        win.timeOnFlip(scoreBoard, 'tStartRefresh')  # time at next scr refresh
-        scoreBoard.setAutoDraw(True)
+        win.timeOnFlip(scoreBoardFinal, 'tStartRefresh')  # time at next scr refresh
+        scoreBoardFinal.setAutoDraw(True)
 
     # *key_resp_scoreBoard* updates
     if t >= 0.0 and key_resp_scoreBoard.status == NOT_STARTED:
@@ -1326,8 +1330,6 @@ thisExp.addData('key_resp_scoreBoard.stopped', key_resp_scoreBoard.tStopRefresh)
 thisExp.nextEntry()
 # the Routine "Instrukcja_1" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
-
-
 
 # ------Prepare to start Routine "Koniec"-------
 t = 0
