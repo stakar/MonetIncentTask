@@ -343,7 +343,7 @@ routineTimer.reset()
 breakDuration = np.random.uniform(1,1.5)
 
 # set up handler to look after randomisation of conditions etc
-test = data.TrialHandler(nReps=20, method='random',
+test = data.TrialHandler(nReps=4, method='random',  #20
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='test')
@@ -735,7 +735,7 @@ routineTimer.reset()
 #BELOW nREPs defines number of repetition in trial, change when you know how
 #many trials should be
 
-trial_block_1 = data.TrialHandler(nReps=140, method='random',
+trial_block_1 = data.TrialHandler(nReps=10, method='random', #140
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='trial_block_1')
@@ -1239,97 +1239,101 @@ save_score('scores.txt',expInfo['participant'],baseline)
 SCB = np.append(SCB,baseline)
 worst = int((1-np.where(SCB == baseline)[0][0]/len(SCB))*100)
 
-scoreBoardFinal.setText('Udało Ci się wykonać zadanie lepiej niż {}% badanych'.format(worst))
-
-# ------Prepare to start Routine "scoreBoard"-------
-t = 0
-scoreBoardClock.reset()  # clock
-frameN = -1
-continueRoutine = True
-# update component parameters for each repeat
-key_resp_scoreBoard = keyboard.Keyboard()
-# keep track of which components have finished
-scoreBoardComponents = [scoreBoardFinal, key_resp_scoreBoard]
-for thisComponent in scoreBoardComponents:
-    thisComponent.tStart = None
-    thisComponent.tStop = None
-    thisComponent.tStartRefresh = None
-    thisComponent.tStopRefresh = None
-    if hasattr(thisComponent, 'status'):
-        thisComponent.status = NOT_STARTED
-
-# -------Start Routine "scoreBoard"-------
-while continueRoutine:
-    # get current time
-    t = scoreBoardClock.getTime()
-    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-    # update/draw components on each frame
-
-    # *scoreBoard* updates
-    if t >= 0.0 and scoreBoardFinal.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        scoreBoard.tStart = t  # not accounting for scr refresh
-        scoreBoard.frameNStart = frameN  # exact frame index
-        win.timeOnFlip(scoreBoardFinal, 'tStartRefresh')  # time at next scr refresh
-        scoreBoardFinal.setAutoDraw(True)
-
-    # *key_resp_scoreBoard* updates
-    if t >= 0.0 and key_resp_scoreBoard.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        key_resp_scoreBoard.tStart = t  # not accounting for scr refresh
-        key_resp_scoreBoard.frameNStart = frameN  # exact frame index
-        win.timeOnFlip(key_resp_scoreBoard, 'tStartRefresh')  # time at next scr refresh
-        key_resp_scoreBoard.status = STARTED
-        # keyboard checking is just starting
-        win.callOnFlip(key_resp_scoreBoard.clock.reset)  # t=0 on next screen flip
-        key_resp_scoreBoard.clearEvents(eventType='keyboard')
-    if key_resp_scoreBoard.status == STARTED:
-        theseKeys = key_resp_scoreBoard.getKeys(keyList=['return'], waitRelease=False)
-        if len(theseKeys):
-            theseKeys = theseKeys[0]  # at least one key was pressed
-
-            # check for quit:
-            if "escape" == theseKeys:
-                endExpNow = True
-            key_resp_scoreBoard.keys = theseKeys.name  # just the last key pressed
-            key_resp_scoreBoard.rt = theseKeys.rt
-            # a response ends the routine
-            continueRoutine = False
-
-    # check for quit (typically the Esc key)
-    if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
-        core.quit()
-
-    # check if all components have finished
-    if not continueRoutine:  # a component has requested a forced-end of Routine
-        break
-    continueRoutine = False  # will revert to True if at least one component still running
-    for thisComponent in scoreBoardComponents:
-        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-            continueRoutine = True
-            break  # at least one component has not yet finished
-
-    # refresh the screen
-    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-        win.flip()
-
-# -------Ending Routine "scoreBoard"-------
-for thisComponent in scoreBoardComponents:
-    if hasattr(thisComponent, "setAutoDraw"):
-        thisComponent.setAutoDraw(False)
-thisExp.addData('scoreBoard.started', scoreBoard.tStartRefresh)
-thisExp.addData('scoreBoard.stopped', scoreBoard.tStopRefresh)
-# check responses
-if key_resp_scoreBoard.keys in ['', [], None]:  # No response was made
-    key_resp_scoreBoard.keys = None
-thisExp.addData('key_resp_scoreBoard.keys',key_resp_scoreBoard.keys)
-if key_resp_inst_1.keys != None:  # we had a response
-    thisExp.addData('key_resp_inst_1.rt', key_resp_scoreBoard.rt)
-thisExp.addData('key_resp_scoreBoard.started', key_resp_scoreBoard.tStartRefresh)
-thisExp.addData('key_resp_scoreBoard.stopped', key_resp_scoreBoard.tStopRefresh)
-thisExp.nextEntry()
-# the Routine "Instrukcja_1" was not non-slip safe, so reset the non-slip timer
-routineTimer.reset()
+if worst == 0:
+    worst = 100
+    
+save_percentyl('result.txt',expInfo['participant'],(100-worst))
+#
+#scoreBoardFinal.setText('Udało Ci się wykonać zadanie lepiej niż {}% badanych'.format(worst))
+## ------Prepare to start Routine "scoreBoard"-------
+#t = 0
+#scoreBoardClock.reset()  # clock
+#frameN = -1
+#continueRoutine = True
+## update component parameters for each repeat
+#key_resp_scoreBoard = keyboard.Keyboard()
+## keep track of which components have finished
+#scoreBoardComponents = [scoreBoardFinal, key_resp_scoreBoard]
+#for thisComponent in scoreBoardComponents:
+#    thisComponent.tStart = None
+#    thisComponent.tStop = None
+#    thisComponent.tStartRefresh = None
+#    thisComponent.tStopRefresh = None
+#    if hasattr(thisComponent, 'status'):
+#        thisComponent.status = NOT_STARTED
+#
+## -------Start Routine "scoreBoard"-------
+#while continueRoutine:
+#    # get current time
+#    t = scoreBoardClock.getTime()
+#    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+#    # update/draw components on each frame
+#
+#    # *scoreBoard* updates
+#    if t >= 0.0 and scoreBoardFinal.status == NOT_STARTED:
+#        # keep track of start time/frame for later
+#        scoreBoard.tStart = t  # not accounting for scr refresh
+#        scoreBoard.frameNStart = frameN  # exact frame index
+#        win.timeOnFlip(scoreBoardFinal, 'tStartRefresh')  # time at next scr refresh
+#        scoreBoardFinal.setAutoDraw(True)
+#
+#    # *key_resp_scoreBoard* updates
+#    if t >= 0.0 and key_resp_scoreBoard.status == NOT_STARTED:
+#        # keep track of start time/frame for later
+#        key_resp_scoreBoard.tStart = t  # not accounting for scr refresh
+#        key_resp_scoreBoard.frameNStart = frameN  # exact frame index
+#        win.timeOnFlip(key_resp_scoreBoard, 'tStartRefresh')  # time at next scr refresh
+#        key_resp_scoreBoard.status = STARTED
+#        # keyboard checking is just starting
+#        win.callOnFlip(key_resp_scoreBoard.clock.reset)  # t=0 on next screen flip
+#        key_resp_scoreBoard.clearEvents(eventType='keyboard')
+#    if key_resp_scoreBoard.status == STARTED:
+#        theseKeys = key_resp_scoreBoard.getKeys(keyList=['return'], waitRelease=False)
+#        if len(theseKeys):
+#            theseKeys = theseKeys[0]  # at least one key was pressed
+#
+#            # check for quit:
+#            if "escape" == theseKeys:
+#                endExpNow = True
+#            key_resp_scoreBoard.keys = theseKeys.name  # just the last key pressed
+#            key_resp_scoreBoard.rt = theseKeys.rt
+#            # a response ends the routine
+#            continueRoutine = False
+#
+#    # check for quit (typically the Esc key)
+#    if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+#        core.quit()
+#
+#    # check if all components have finished
+#    if not continueRoutine:  # a component has requested a forced-end of Routine
+#        break
+#    continueRoutine = False  # will revert to True if at least one component still running
+#    for thisComponent in scoreBoardComponents:
+#        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+#            continueRoutine = True
+#            break  # at least one component has not yet finished
+#
+#    # refresh the screen
+#    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+#        win.flip()
+#
+## -------Ending Routine "scoreBoard"-------
+#for thisComponent in scoreBoardComponents:
+#    if hasattr(thisComponent, "setAutoDraw"):
+#        thisComponent.setAutoDraw(False)
+#thisExp.addData('scoreBoard.started', scoreBoard.tStartRefresh)
+#thisExp.addData('scoreBoard.stopped', scoreBoard.tStopRefresh)
+## check responses
+#if key_resp_scoreBoard.keys in ['', [], None]:  # No response was made
+#    key_resp_scoreBoard.keys = None
+#thisExp.addData('key_resp_scoreBoard.keys',key_resp_scoreBoard.keys)
+#if key_resp_inst_1.keys != None:  # we had a response
+#    thisExp.addData('key_resp_inst_1.rt', key_resp_scoreBoard.rt)
+#thisExp.addData('key_resp_scoreBoard.started', key_resp_scoreBoard.tStartRefresh)
+#thisExp.addData('key_resp_scoreBoard.stopped', key_resp_scoreBoard.tStopRefresh)
+#thisExp.nextEntry()
+## the Routine "Instrukcja_1" was not non-slip safe, so reset the non-slip timer
+#routineTimer.reset()
 
 # ------Prepare to start Routine "Koniec"-------
 t = 0
