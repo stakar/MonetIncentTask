@@ -20,13 +20,7 @@ Modules:
     disappears. After respondent's reaction the feedback is provided about accuracy.
     Respondent is instructed to react for stimuli before it deisappears.
     Reaction times are obtained.
-
-TODO:
-    1.Pre-trial
-    2.Trial
-    3.Instructions
-    4.mechanism for calculating response time
-
+    
 This experiment was created using PsychoPy3 Experiment Builder (v3.1.2),
     on lipiec 03, 2019, at 12:48
 If you publish work using this script please cite the PsychoPy publications:
@@ -343,7 +337,7 @@ routineTimer.reset()
 breakDuration = np.random.uniform(1,1.5)
 
 # set up handler to look after randomisation of conditions etc
-test = data.TrialHandler(nReps=4, method='random',  #20
+test = data.TrialHandler(nReps=20, method='random',  #20
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='test')
@@ -487,7 +481,7 @@ for thisTest in test:
             test_resp.frameNStop = frameN  # exact frame index
             win.timeOnFlip(test_resp, 'tStopRefresh')  # time at next scr refresh
             test_resp.status = FINISHED
-            port.setData(28)
+            port.setData(78)
         if test_resp.status == STARTED:
             theseKeys = test_resp.getKeys(keyList=['space'], waitRelease=False)
             if len(theseKeys):
@@ -735,7 +729,7 @@ routineTimer.reset()
 #BELOW nREPs defines number of repetition in trial, change when you know how
 #many trials should be
 
-trial_block_1 = data.TrialHandler(nReps=10, method='random', #140
+trial_block_1 = data.TrialHandler(nReps=140, method='random', #140
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='trial_block_1')
@@ -893,7 +887,7 @@ for thisTrial_block_1 in trial_block_1:
             Fixation.frameNStop = frameN  # exact frame index
             win.timeOnFlip(Fixation, 'tStopRefresh')  # time at next scr refresh
             Fixation.setAutoDraw(False)
-            port.setData(20)
+            port.setData(70)
 
         # *key_resp* updates
         if t >= 0.0 and key_resp2.status == NOT_STARTED:
@@ -912,7 +906,7 @@ for thisTrial_block_1 in trial_block_1:
             key_resp2.frameNStop = frameN  # exact frame index
             win.timeOnFlip(key_resp2, 'tStopRefresh')  # time at next scr refresh
             key_resp2.status = FINISHED
-            port.setData(21)
+            port.setData(71)
 
         if key_resp2.status == STARTED:
             theseKeys = key_resp2.getKeys(keyList=['space'], waitRelease=False)
@@ -1012,12 +1006,12 @@ for thisTrial_block_1 in trial_block_1:
             key_resp.frameNStop = frameN  # exact frame index
             win.timeOnFlip(key_resp, 'tStopRefresh')  # time at next scr refresh
             key_resp.status = FINISHED
-            port.setData(22)
+            port.setData(72)
 
 
         if key_resp.status == STARTED:
             theseKeys = key_resp.getKeys(keyList=['space'], waitRelease=False)
-            port.setData(22)
+            port.setData(72)
             if len(theseKeys):
                 theseKeys = theseKeys[0]  # at least one key was pressed
 
@@ -1140,7 +1134,7 @@ for thisTrial_block_1 in trial_block_1:
     # update component parameters for each repeat
     print(key_resp.rt)
 
-    trigger = 40
+    trigger = 90
 
     if too_fast == True:
         fdb = feedbackfile[3] #reaction before stimuli
@@ -1151,15 +1145,15 @@ for thisTrial_block_1 in trial_block_1:
             if key_resp.rt < duration:
                 fdb = feedbackfile[0] #positive feedback
                 feedVal.append(1)
-                trigger = 25
+                trigger = 75
             else:
                 fdb = feedbackfile[1] #negative feedback
                 feedVal.append(0)
-                trigger = 26
+                trigger = 76
         else:
             fdb = feedbackfile[2] #no-response feedback
             feedVal.append(0)
-            trigger = 30
+            trigger = 80
 
 
     image.setImage(fdb)
@@ -1242,7 +1236,7 @@ worst = int((1-np.where(SCB == baseline)[0][0]/len(SCB))*100)
 if worst == 0:
     worst = 100
     
-save_percentyl('result.txt',expInfo['participant'],(100-worst))
+save_percentyl('result.txt',expInfo['participant'],worst)
 #
 #scoreBoardFinal.setText('Udało Ci się wykonać zadanie lepiej niż {}% badanych'.format(worst))
 ## ------Prepare to start Routine "scoreBoard"-------
