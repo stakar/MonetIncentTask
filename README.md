@@ -24,11 +24,11 @@ Stimuli is a simple white rectangle, before it's appearance the cue (cross) is s
 
 After performing single trial in task, the feeback is provided to the user, positive is:
 
-![alt text](https://github.com/stakar/MonetIncentTask/blob/master/happy.png "Logo Title Text 1")
+![alt text](https://github.com/stakar/MonetIncentTask/blob/master/stimuli/happy.png "Logo Title Text 1")
 
 and negative:
 
-![alt text](https://github.com/stakar/MonetIncentTask/blob/master/sad.png "Logo Title Text 1")
+![alt text](https://github.com/stakar/MonetIncentTask/blob/master/stimuli/sad.png "Logo Title Text 1")
 
 ## References
 FMRI Visualization of Brain Activity during a Monetary Incentive Delay Task (2000)
