@@ -1,6 +1,9 @@
 # MonetIncentTask
 Monetary Incentive Task for experimental purposes, developed at Poznań Laboratory of Affective Neuroscience
-v1.0
+v2.0
+
+To run an experiment without setting up ports, run dev.py (but it is developement version, so it may not always be stable).
+To run full-lab experiment, run MIT.py.
 
 ## Progress
 First version finished, now it is going to encounter cosmetical changes.
@@ -29,6 +32,8 @@ After performing single trial in task, the feeback is provided to the user, posi
 and negative:
 
 ![alt text](https://github.com/stakar/MonetIncentTask/blob/master/stimuli/sad.png "Logo Title Text 1")
+
+Also, lack of, or too fast reaction are providing feedback.
 
 ## References
 FMRI Visualization of Brain Activity during a Monetary Incentive Delay Task (2000)
