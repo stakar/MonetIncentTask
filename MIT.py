@@ -21,6 +21,19 @@ Modules:
     Respondent is instructed to react for stimuli before it deisappears.
     Reaction times are obtained.
     
+Triggers:
+    1  :  start of experiment/stimulus in test trial
+    78 :  test response
+    70 :  fixation appears
+    71 :  response during fixation/stimulus in trials apears
+    72 :  response for trial
+    75 :  positive feedback
+    76 :  negative feedback
+    77 :  too fast response feedback
+    80 :  no response feeback
+    90 :  default trigger for feedback
+    
+
 This experiment was created using PsychoPy3 Experiment Builder (v3.1.2),
     on lipiec 03, 2019, at 12:48
 If you publish work using this script please cite the PsychoPy publications:
@@ -43,8 +56,7 @@ import sys  # to get file system encoding
 from tools import *
 from psychopy.hardware import keyboard
 
-
-port = parallel.ParallelPort(address = 0x0778)
+port = parallel.ParallelPort(address=0x0378)
 port.setData(1) # sets all pins low
 # Ensure that relative paths start from the same directory as this script
 _thisDir = os.path.dirname(os.path.abspath(__file__))
@@ -81,22 +93,18 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 
 # Setup the Window
 
-# win = visual.Window(
-#     size=(1024, 768), fullscr=True, screen=0,
-#     winType='pyglet', allowGUI=False, allowStencil=False,
-#     monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
-#     blendMode='avg', useFBO=True,
-    # units='deg')
+win = visual.Window(
+     size=(512, 384), fullscr=False, screen=0,
+     winType='pyglet', allowGUI=True, allowStencil=False,
+     monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
+     blendMode='avg', useFBO=True,
+     units='deg')
 
 # Sometimes the code above works, sometimes one needs to use the one below
 
 #win = visual.Window([1920,1080],fullscr=True, allowGUI=True,
 #monitor='default_monitor', units='deg', color=[0,0,0])
 # size of the window in pixels (X,Y), should at least match the .bmp files that are presented
-
-#monitor='default_monitor', units='deg', color=[0,0,0])
-win = visual.Window([1920,1080],fullscr=True, allowGUI=True,
-monitor='testMonitor', units='deg', color=[0,0,0])
 
 
 # store frame rate of monitor if we can measure it
@@ -126,18 +134,7 @@ Inst_1 = visual.TextStim(win=win, name='Inst_1',
 SCBText,SCB = get_scoreboard('scores.txt')
 scoreBoardClock = core.Clock()
 scoreBoard = visual.TextStim(win=win, name='scoreBoard',
-    text=SCBText,
-    font='Arial',
-    pos=(0, 0), height=1, wrapWidth=20, ori=0,
-    color='white', colorSpace='rgb', opacity=1,
-    languageStyle='LTR',
-    depth=0.0);
-
-
-# Initialize components for Routine "Instrukcja_1"
-scoreBoardClock = core.Clock()
-scoreBoardFinal = visual.TextStim(win=win, name='scoreBoard',
-    text='Wut',
+    text=SCBText + '\n \n Naciśnij enter by przejść dalej',
     font='Arial',
     pos=(0, 0), height=1, wrapWidth=20, ori=0,
     color='white', colorSpace='rgb', opacity=1,
@@ -173,7 +170,7 @@ Trial_1Clock = core.Clock()
 Stimulus = visual.ImageStim(
         win=win,
         name='stimuli.jpg',
-        image='stimuli.jpg', mask=None,
+        image='stimuli\\stimuli.jpg', mask=None,
         ori=0, pos=(0, 0), size=(10, 10),
         color=[1,1,1], colorSpace='rgb', opacity=1,
         flipHoriz=False, flipVert=False,
@@ -197,13 +194,13 @@ Inst_2 = visual.TextStim(win=win, name='Inst_2',
     color='white', colorSpace='rgb', opacity=1,
     languageStyle='LTR',
     depth=0.0);
-
+ 
 # Initialize components for Routine "Trial_2"
 Trial_2Clock = core.Clock()
 Bodziec = visual.ImageStim(
     win=win,
     name='stimuli.jpg',
-    image='stimuli.jpg', mask=None,
+    image='stimuli\\stimuli.jpg', mask=None,
     ori=0, pos=(0, 0), size=(10, 10),
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
@@ -217,8 +214,8 @@ feedVal = [] #placeholder for feedback values, for deciding hardness
 
 feedbackClock = core.Clock()
 
-feedbackfile =['happy.png','sad.png','noReaction.png','tooFast.png']
-
+feedbackfile =['stimuli\\' + n for n in  ['happy.png','sad.png',
+                                           'noReaction.png','tooFast.png']]
 msg= ""
 image = visual.ImageStim(
     win=win,
@@ -232,11 +229,11 @@ image = visual.ImageStim(
 # Initialize components for Routine "Koniec"
 KoniecClock = core.Clock()
 End = visual.TextStim(win=win, name='End',
-    text='Koniec',
+    text='Koniec \n\n Zawołaj osobę przeprowadzającą badanie \n\n Naciśnij spację, aby zapisać wyniki',
     font='Arial',
     pos=(0, 0), height=1, wrapWidth=None, ori=0,
     color='white', colorSpace='rgb', opacity=1,
-    languageStyle='LTR',
+    languageStyle='LTR',alignVert='center',
     depth=0.0);
 
 # Create some handy timers
@@ -319,16 +316,16 @@ while continueRoutine:
 for thisComponent in Instrukcja_1Components:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-thisExp.addData('Inst_1.started', Inst_1.tStartRefresh)
-thisExp.addData('Inst_1.stopped', Inst_1.tStopRefresh)
-# check responses
-if key_resp_inst_1.keys in ['', [], None]:  # No response was made
-    key_resp_inst_1.keys = None
-thisExp.addData('key_resp_inst_1.keys',key_resp_inst_1.keys)
-if key_resp_inst_1.keys != None:  # we had a response
-    thisExp.addData('key_resp_inst_1.rt', key_resp_inst_1.rt)
-thisExp.addData('key_resp_inst_1.started', key_resp_inst_1.tStartRefresh)
-thisExp.addData('key_resp_inst_1.stopped', key_resp_inst_1.tStopRefresh)
+#thisExp.addData('Inst_1.started', Inst_1.tStartRefresh)
+#thisExp.addData('Inst_1.stopped', Inst_1.tStopRefresh)
+## check responses
+#if key_resp_inst_1.keys in ['', [], None]:  # No response was made
+#    key_resp_inst_1.keys = None
+#thisExp.addData('key_resp_inst_1.keys',key_resp_inst_1.keys)
+#if key_resp_inst_1.keys != None:  # we had a response
+#    thisExp.addData('key_resp_inst_1.rt', key_resp_inst_1.rt)
+#thisExp.addData('key_resp_inst_1.started', key_resp_inst_1.tStartRefresh)
+#thisExp.addData('key_resp_inst_1.stopped', key_resp_inst_1.tStopRefresh)
 thisExp.nextEntry()
 # the Routine "Instrukcja_1" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
@@ -337,7 +334,7 @@ routineTimer.reset()
 breakDuration = np.random.uniform(1,1.5)
 
 # set up handler to look after randomisation of conditions etc
-test = data.TrialHandler(nReps=20, method='random',  #20
+test = data.TrialHandler(nReps=3, method='random',
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='test')
@@ -418,8 +415,8 @@ for thisTest in test:
     for thisComponent in PrzerwaComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
-    thisExp.addData('Clear_screen.started', Clear_screen.tStartRefresh)
-    thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
+#    thisExp.addData('Clear_screen.started', Clear_screen.tStartRefresh)
+#    thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
     breakDuration = np.random.uniform(1,2)
 
 
@@ -527,7 +524,7 @@ for thisTest in test:
     if test_resp.keys != None:  # we had a response
         test.addData('test_resp.rt', test_resp.rt)
     test.addData('test_resp.started', test_resp.tStartRefresh)
-    test.addData('test_resp.stopped', test_resp.tStopRefresh)
+#    test.addData('test_resp.stopped', test_resp.tStopRefresh)
     thisExp.nextEntry()
 
 # completed 10 repeats of 'test'
@@ -614,16 +611,16 @@ while continueRoutine:
 for thisComponent in Instrukcja_2Components:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-thisExp.addData('Inst_2.started', Inst_2.tStartRefresh)
-thisExp.addData('Inst_2.stopped', Inst_2.tStopRefresh)
+#thisExp.addData('Inst_2.started', Inst_2.tStartRefresh)
+#thisExp.addData('Inst_2.stopped', Inst_2.tStopRefresh)
 # check responses
-if key_resp_inst_2.keys in ['', [], None]:  # No response was made
-    key_resp_inst_2.keys = None
-thisExp.addData('key_resp_inst_2.keys',key_resp_inst_2.keys)
-if key_resp_inst_2.keys != None:  # we had a response
-    thisExp.addData('key_resp_inst_2.rt', key_resp_inst_2.rt)
-thisExp.addData('key_resp_inst_2.started', key_resp_inst_2.tStartRefresh)
-thisExp.addData('key_resp_inst_2.stopped', key_resp_inst_2.tStopRefresh)
+#if key_resp_inst_2.keys in ['', [], None]:  # No response was made
+#    key_resp_inst_2.keys = None
+#thisExp.addData('key_resp_inst_2.keys',key_resp_inst_2.keys)
+#if key_resp_inst_2.keys != None:  # we had a response
+#    thisExp.addData('key_resp_inst_2.rt', key_resp_inst_2.rt)
+#thisExp.addData('key_resp_inst_2.started', key_resp_inst_2.tStartRefresh)
+#thisExp.addData('key_resp_inst_2.stopped', key_resp_inst_2.tStopRefresh)
 thisExp.nextEntry()
 # the Routine "Instrukcja_2" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
@@ -709,16 +706,16 @@ while continueRoutine:
 for thisComponent in scoreBoardComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-thisExp.addData('scoreBoard.started', scoreBoard.tStartRefresh)
-thisExp.addData('scoreBoard.stopped', scoreBoard.tStopRefresh)
+#thisExp.addData('scoreBoard.started', scoreBoard.tStartRefresh)
+#thisExp.addData('scoreBoard.stopped', scoreBoard.tStopRefresh)
 # check responses
 if key_resp_scoreBoard.keys in ['', [], None]:  # No response was made
     key_resp_scoreBoard.keys = None
 thisExp.addData('key_resp_scoreBoard.keys',key_resp_scoreBoard.keys)
 if key_resp_inst_1.keys != None:  # we had a response
     thisExp.addData('key_resp_inst_1.rt', key_resp_scoreBoard.rt)
-thisExp.addData('key_resp_scoreBoard.started', key_resp_scoreBoard.tStartRefresh)
-thisExp.addData('key_resp_scoreBoard.stopped', key_resp_scoreBoard.tStopRefresh)
+#thisExp.addData('key_resp_scoreBoard.started', key_resp_scoreBoard.tStartRefresh)
+#thisExp.addData('key_resp_scoreBoard.stopped', key_resp_scoreBoard.tStopRefresh)
 thisExp.nextEntry()
 # the Routine "Instrukcja_1" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
@@ -729,7 +726,7 @@ routineTimer.reset()
 #BELOW nREPs defines number of repetition in trial, change when you know how
 #many trials should be
 
-trial_block_1 = data.TrialHandler(nReps=140, method='random', #140
+trial_block_1 = data.TrialHandler(nReps=10, method='random',
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='trial_block_1')
@@ -845,8 +842,8 @@ for thisTrial_block_1 in trial_block_1:
     for thisComponent in PrzerwaComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
-    thisExp.addData('Clear_screen.started', Clear_screen.tStartRefresh)
-    thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
+#    thisExp.addData('Clear_screen.started', Clear_screen.tStartRefresh)
+#    thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
 
     # ------Prepare to start Routine "fix"-------
     t = 0
@@ -944,7 +941,7 @@ for thisTrial_block_1 in trial_block_1:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
     trial_block_1.addData('Fixation.started', Fixation.tStartRefresh)
-    trial_block_1.addData('Fixation.stopped', Fixation.tStopRefresh)
+#    trial_block_1.addData('Fixation.stopped', Fixation.tStopRefresh)
     fixDuration = np.random.uniform(1,2)
 
 
@@ -980,6 +977,7 @@ for thisTrial_block_1 in trial_block_1:
             Bodziec.frameNStart = frameN  # exact frame index
             win.timeOnFlip(Bodziec, 'tStartRefresh')  # time at next scr refresh
             Bodziec.setAutoDraw(True)
+            port.setData(71)
             #below variable duration defines how long the stimulus is shown
         frameRemains = 0.0 + duration - win.monitorFramePeriod * 0.75  # most of one frame period left
         if Bodziec.status == STARTED and t >= frameRemains:
@@ -1049,7 +1047,7 @@ for thisTrial_block_1 in trial_block_1:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
     trial_block_1.addData('Bodziec.started', Bodziec.tStartRefresh)
-    trial_block_1.addData('Bodziec.stopped', Bodziec.tStopRefresh)
+#    trial_block_1.addData('Bodziec.stopped', Bodziec.tStopRefresh)
     # check responses
     if key_resp.keys in ['', [], None]:  # No response was made
         key_resp.keys = None
@@ -1057,7 +1055,7 @@ for thisTrial_block_1 in trial_block_1:
     if key_resp.keys != None:  # we had a response
         trial_block_1.addData('key_resp.rt', key_resp.rt)
     trial_block_1.addData('key_resp.started', key_resp.tStartRefresh)
-    trial_block_1.addData('key_resp.stopped', key_resp.tStopRefresh)
+#    trial_block_1.addData('key_resp.stopped', key_resp.tStopRefresh)
 
 
     # ------Prepare to start Routine "Przerwa"-------
@@ -1122,7 +1120,7 @@ for thisTrial_block_1 in trial_block_1:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
     thisExp.addData('Clear_screen.started', Clear_screen.tStartRefresh)
-    thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
+#    thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
 
 
     # ------Prepare to start Routine "feedback"-------
@@ -1140,6 +1138,7 @@ for thisTrial_block_1 in trial_block_1:
         fdb = feedbackfile[3] #reaction before stimuli
         feedVal.append(0)
         too_fast = False
+        trigger = 77
     else:
         if key_resp.rt != list(): #test if there was response
             if key_resp.rt < duration:
@@ -1217,13 +1216,15 @@ for thisTrial_block_1 in trial_block_1:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
     trial_block_1.addData('image.started', image.tStartRefresh)
-    trial_block_1.addData('image.stopped', image.tStopRefresh)
+    trial_block_1.addData('feedback.type', trigger)
     thisExp.nextEntry()
 
 # completed 5 repeats of 'trial_block_1'
 
 print(feedVal)
 print('Procent poprawnych odpowiedzi: {}%'.format((np.count_nonzero(feedVal)/len(feedVal)*100)))
+
+print('Participant is {}'.format(expInfo['participant']))
 
 save_score('scores.txt',expInfo['participant'],baseline)
 
@@ -1237,97 +1238,6 @@ if worst == 0:
     worst = 100
     
 save_percentyl('result.txt',expInfo['participant'],worst)
-#
-#scoreBoardFinal.setText('Udało Ci się wykonać zadanie lepiej niż {}% badanych'.format(worst))
-## ------Prepare to start Routine "scoreBoard"-------
-#t = 0
-#scoreBoardClock.reset()  # clock
-#frameN = -1
-#continueRoutine = True
-## update component parameters for each repeat
-#key_resp_scoreBoard = keyboard.Keyboard()
-## keep track of which components have finished
-#scoreBoardComponents = [scoreBoardFinal, key_resp_scoreBoard]
-#for thisComponent in scoreBoardComponents:
-#    thisComponent.tStart = None
-#    thisComponent.tStop = None
-#    thisComponent.tStartRefresh = None
-#    thisComponent.tStopRefresh = None
-#    if hasattr(thisComponent, 'status'):
-#        thisComponent.status = NOT_STARTED
-#
-## -------Start Routine "scoreBoard"-------
-#while continueRoutine:
-#    # get current time
-#    t = scoreBoardClock.getTime()
-#    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-#    # update/draw components on each frame
-#
-#    # *scoreBoard* updates
-#    if t >= 0.0 and scoreBoardFinal.status == NOT_STARTED:
-#        # keep track of start time/frame for later
-#        scoreBoard.tStart = t  # not accounting for scr refresh
-#        scoreBoard.frameNStart = frameN  # exact frame index
-#        win.timeOnFlip(scoreBoardFinal, 'tStartRefresh')  # time at next scr refresh
-#        scoreBoardFinal.setAutoDraw(True)
-#
-#    # *key_resp_scoreBoard* updates
-#    if t >= 0.0 and key_resp_scoreBoard.status == NOT_STARTED:
-#        # keep track of start time/frame for later
-#        key_resp_scoreBoard.tStart = t  # not accounting for scr refresh
-#        key_resp_scoreBoard.frameNStart = frameN  # exact frame index
-#        win.timeOnFlip(key_resp_scoreBoard, 'tStartRefresh')  # time at next scr refresh
-#        key_resp_scoreBoard.status = STARTED
-#        # keyboard checking is just starting
-#        win.callOnFlip(key_resp_scoreBoard.clock.reset)  # t=0 on next screen flip
-#        key_resp_scoreBoard.clearEvents(eventType='keyboard')
-#    if key_resp_scoreBoard.status == STARTED:
-#        theseKeys = key_resp_scoreBoard.getKeys(keyList=['return'], waitRelease=False)
-#        if len(theseKeys):
-#            theseKeys = theseKeys[0]  # at least one key was pressed
-#
-#            # check for quit:
-#            if "escape" == theseKeys:
-#                endExpNow = True
-#            key_resp_scoreBoard.keys = theseKeys.name  # just the last key pressed
-#            key_resp_scoreBoard.rt = theseKeys.rt
-#            # a response ends the routine
-#            continueRoutine = False
-#
-#    # check for quit (typically the Esc key)
-#    if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
-#        core.quit()
-#
-#    # check if all components have finished
-#    if not continueRoutine:  # a component has requested a forced-end of Routine
-#        break
-#    continueRoutine = False  # will revert to True if at least one component still running
-#    for thisComponent in scoreBoardComponents:
-#        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-#            continueRoutine = True
-#            break  # at least one component has not yet finished
-#
-#    # refresh the screen
-#    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-#        win.flip()
-#
-## -------Ending Routine "scoreBoard"-------
-#for thisComponent in scoreBoardComponents:
-#    if hasattr(thisComponent, "setAutoDraw"):
-#        thisComponent.setAutoDraw(False)
-#thisExp.addData('scoreBoard.started', scoreBoard.tStartRefresh)
-#thisExp.addData('scoreBoard.stopped', scoreBoard.tStopRefresh)
-## check responses
-#if key_resp_scoreBoard.keys in ['', [], None]:  # No response was made
-#    key_resp_scoreBoard.keys = None
-#thisExp.addData('key_resp_scoreBoard.keys',key_resp_scoreBoard.keys)
-#if key_resp_inst_1.keys != None:  # we had a response
-#    thisExp.addData('key_resp_inst_1.rt', key_resp_scoreBoard.rt)
-#thisExp.addData('key_resp_scoreBoard.started', key_resp_scoreBoard.tStartRefresh)
-#thisExp.addData('key_resp_scoreBoard.stopped', key_resp_scoreBoard.tStopRefresh)
-#thisExp.nextEntry()
-## the Routine "Instrukcja_1" was not non-slip safe, so reset the non-slip timer
-#routineTimer.reset()
 
 # ------Prepare to start Routine "Koniec"-------
 t = 0
