@@ -49,8 +49,8 @@ import sys  # to get file system encoding
 from tools import *
 from psychopy.hardware import keyboard
 
-port = parallel.ParallelPort(address=0x0378)
-port.setData(0) # sets all pins low
+#port = parallel.ParallelPort(address=0x0378)
+#port.setData(0) # sets all pins low
 # Ensure that relative paths start from the same directory as this script
 _thisDir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(_thisDir)
@@ -86,17 +86,17 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 
 # Setup the Window
 
-# win = visual.Window(
-#     size=(1024, 768), fullscr=True, screen=0,
-#     winType='pyglet', allowGUI=False, allowStencil=False,
-#     monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
-#     blendMode='avg', useFBO=True,
-    # units='deg')
+win = visual.Window(
+     size=(512, 384), fullscr=False, screen=0,
+     winType='pyglet', allowGUI=True, allowStencil=False,
+     monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
+     blendMode='avg', useFBO=True,
+     units='deg')
 
 # Sometimes the code above works, sometimes one needs to use the one below
 
-win = visual.Window([1920,1080],fullscr=True, allowGUI=True,
-monitor='default_monitor', units='deg', color=[0,0,0])
+#win = visual.Window([1920,1080],fullscr=True, allowGUI=True,
+#monitor='default_monitor', units='deg', color=[0,0,0])
 # size of the window in pixels (X,Y), should at least match the .bmp files that are presented
 
 
@@ -162,7 +162,7 @@ Trial_1Clock = core.Clock()
 Stimulus = visual.ImageStim(
         win=win,
         name='stimuli.jpg',
-        image='stimuli.jpg', mask=None,
+        image='stimuli\\stimuli.jpg', mask=None,
         ori=0, pos=(0, 0), size=(10, 10),
         color=[1,1,1], colorSpace='rgb', opacity=1,
         flipHoriz=False, flipVert=False,
@@ -186,13 +186,13 @@ Inst_2 = visual.TextStim(win=win, name='Inst_2',
     color='white', colorSpace='rgb', opacity=1,
     languageStyle='LTR',
     depth=0.0);
-
+ 
 # Initialize components for Routine "Trial_2"
 Trial_2Clock = core.Clock()
 Bodziec = visual.ImageStim(
     win=win,
     name='stimuli.jpg',
-    image='stimuli.jpg', mask=None,
+    image='stimuli\\stimuli.jpg', mask=None,
     ori=0, pos=(0, 0), size=(10, 10),
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
@@ -206,8 +206,8 @@ feedVal = [] #placeholder for feedback values, for deciding hardness
 
 feedbackClock = core.Clock()
 
-feedbackfile =['happy.png','sad.png','noReaction.png','tooFast.png']
-
+feedbackfile =['stimuli\\' + n for n in  ['happy.png','sad.png',
+                                           'noReaction.png','tooFast.png']]
 msg= ""
 image = visual.ImageStim(
     win=win,
@@ -308,16 +308,16 @@ while continueRoutine:
 for thisComponent in Instrukcja_1Components:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-thisExp.addData('Inst_1.started', Inst_1.tStartRefresh)
-thisExp.addData('Inst_1.stopped', Inst_1.tStopRefresh)
-# check responses
-if key_resp_inst_1.keys in ['', [], None]:  # No response was made
-    key_resp_inst_1.keys = None
-thisExp.addData('key_resp_inst_1.keys',key_resp_inst_1.keys)
-if key_resp_inst_1.keys != None:  # we had a response
-    thisExp.addData('key_resp_inst_1.rt', key_resp_inst_1.rt)
-thisExp.addData('key_resp_inst_1.started', key_resp_inst_1.tStartRefresh)
-thisExp.addData('key_resp_inst_1.stopped', key_resp_inst_1.tStopRefresh)
+#thisExp.addData('Inst_1.started', Inst_1.tStartRefresh)
+#thisExp.addData('Inst_1.stopped', Inst_1.tStopRefresh)
+## check responses
+#if key_resp_inst_1.keys in ['', [], None]:  # No response was made
+#    key_resp_inst_1.keys = None
+#thisExp.addData('key_resp_inst_1.keys',key_resp_inst_1.keys)
+#if key_resp_inst_1.keys != None:  # we had a response
+#    thisExp.addData('key_resp_inst_1.rt', key_resp_inst_1.rt)
+#thisExp.addData('key_resp_inst_1.started', key_resp_inst_1.tStartRefresh)
+#thisExp.addData('key_resp_inst_1.stopped', key_resp_inst_1.tStopRefresh)
 thisExp.nextEntry()
 # the Routine "Instrukcja_1" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
@@ -407,8 +407,8 @@ for thisTest in test:
     for thisComponent in PrzerwaComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
-    thisExp.addData('Clear_screen.started', Clear_screen.tStartRefresh)
-    thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
+#    thisExp.addData('Clear_screen.started', Clear_screen.tStartRefresh)
+#    thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
     breakDuration = np.random.uniform(1,2)
 
 
@@ -451,7 +451,7 @@ for thisTest in test:
             Stimulus.frameNStop = frameN  # exact frame index
             win.timeOnFlip(Stimulus, 'tStopRefresh')  # time at next scr refresh
             Stimulus.setAutoDraw(False)
-            port.setData(1)
+#            port.setData(1)
 
         # *test_resp* updates
         if t >= 0 and test_resp.status == NOT_STARTED:
@@ -470,7 +470,7 @@ for thisTest in test:
             test_resp.frameNStop = frameN  # exact frame index
             win.timeOnFlip(test_resp, 'tStopRefresh')  # time at next scr refresh
             test_resp.status = FINISHED
-            port.setData(200)
+#            port.setData(78)
         if test_resp.status == STARTED:
             theseKeys = test_resp.getKeys(keyList=['space'], waitRelease=False)
             if len(theseKeys):
@@ -516,7 +516,7 @@ for thisTest in test:
     if test_resp.keys != None:  # we had a response
         test.addData('test_resp.rt', test_resp.rt)
     test.addData('test_resp.started', test_resp.tStartRefresh)
-    test.addData('test_resp.stopped', test_resp.tStopRefresh)
+#    test.addData('test_resp.stopped', test_resp.tStopRefresh)
     thisExp.nextEntry()
 
 # completed 10 repeats of 'test'
@@ -603,16 +603,16 @@ while continueRoutine:
 for thisComponent in Instrukcja_2Components:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-thisExp.addData('Inst_2.started', Inst_2.tStartRefresh)
-thisExp.addData('Inst_2.stopped', Inst_2.tStopRefresh)
+#thisExp.addData('Inst_2.started', Inst_2.tStartRefresh)
+#thisExp.addData('Inst_2.stopped', Inst_2.tStopRefresh)
 # check responses
-if key_resp_inst_2.keys in ['', [], None]:  # No response was made
-    key_resp_inst_2.keys = None
-thisExp.addData('key_resp_inst_2.keys',key_resp_inst_2.keys)
-if key_resp_inst_2.keys != None:  # we had a response
-    thisExp.addData('key_resp_inst_2.rt', key_resp_inst_2.rt)
-thisExp.addData('key_resp_inst_2.started', key_resp_inst_2.tStartRefresh)
-thisExp.addData('key_resp_inst_2.stopped', key_resp_inst_2.tStopRefresh)
+#if key_resp_inst_2.keys in ['', [], None]:  # No response was made
+#    key_resp_inst_2.keys = None
+#thisExp.addData('key_resp_inst_2.keys',key_resp_inst_2.keys)
+#if key_resp_inst_2.keys != None:  # we had a response
+#    thisExp.addData('key_resp_inst_2.rt', key_resp_inst_2.rt)
+#thisExp.addData('key_resp_inst_2.started', key_resp_inst_2.tStartRefresh)
+#thisExp.addData('key_resp_inst_2.stopped', key_resp_inst_2.tStopRefresh)
 thisExp.nextEntry()
 # the Routine "Instrukcja_2" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
@@ -698,16 +698,16 @@ while continueRoutine:
 for thisComponent in scoreBoardComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-thisExp.addData('scoreBoard.started', scoreBoard.tStartRefresh)
-thisExp.addData('scoreBoard.stopped', scoreBoard.tStopRefresh)
+#thisExp.addData('scoreBoard.started', scoreBoard.tStartRefresh)
+#thisExp.addData('scoreBoard.stopped', scoreBoard.tStopRefresh)
 # check responses
 if key_resp_scoreBoard.keys in ['', [], None]:  # No response was made
     key_resp_scoreBoard.keys = None
 thisExp.addData('key_resp_scoreBoard.keys',key_resp_scoreBoard.keys)
 if key_resp_inst_1.keys != None:  # we had a response
     thisExp.addData('key_resp_inst_1.rt', key_resp_scoreBoard.rt)
-thisExp.addData('key_resp_scoreBoard.started', key_resp_scoreBoard.tStartRefresh)
-thisExp.addData('key_resp_scoreBoard.stopped', key_resp_scoreBoard.tStopRefresh)
+#thisExp.addData('key_resp_scoreBoard.started', key_resp_scoreBoard.tStartRefresh)
+#thisExp.addData('key_resp_scoreBoard.stopped', key_resp_scoreBoard.tStopRefresh)
 thisExp.nextEntry()
 # the Routine "Instrukcja_1" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
@@ -834,8 +834,8 @@ for thisTrial_block_1 in trial_block_1:
     for thisComponent in PrzerwaComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
-    thisExp.addData('Clear_screen.started', Clear_screen.tStartRefresh)
-    thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
+#    thisExp.addData('Clear_screen.started', Clear_screen.tStartRefresh)
+#    thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
 
     # ------Prepare to start Routine "fix"-------
     t = 0
@@ -876,7 +876,7 @@ for thisTrial_block_1 in trial_block_1:
             Fixation.frameNStop = frameN  # exact frame index
             win.timeOnFlip(Fixation, 'tStopRefresh')  # time at next scr refresh
             Fixation.setAutoDraw(False)
-            port.setData(5)
+#            port.setData(70)
 
         # *key_resp* updates
         if t >= 0.0 and key_resp2.status == NOT_STARTED:
@@ -895,7 +895,7 @@ for thisTrial_block_1 in trial_block_1:
             key_resp2.frameNStop = frameN  # exact frame index
             win.timeOnFlip(key_resp2, 'tStopRefresh')  # time at next scr refresh
             key_resp2.status = FINISHED
-            port.setData(6)
+#            port.setData(71)
 
         if key_resp2.status == STARTED:
             theseKeys = key_resp2.getKeys(keyList=['space'], waitRelease=False)
@@ -933,7 +933,7 @@ for thisTrial_block_1 in trial_block_1:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
     trial_block_1.addData('Fixation.started', Fixation.tStartRefresh)
-    trial_block_1.addData('Fixation.stopped', Fixation.tStopRefresh)
+#    trial_block_1.addData('Fixation.stopped', Fixation.tStopRefresh)
     fixDuration = np.random.uniform(1,2)
 
 
@@ -995,11 +995,12 @@ for thisTrial_block_1 in trial_block_1:
             key_resp.frameNStop = frameN  # exact frame index
             win.timeOnFlip(key_resp, 'tStopRefresh')  # time at next scr refresh
             key_resp.status = FINISHED
-            port.setData(10)
+#            port.setData(72)
 
 
         if key_resp.status == STARTED:
             theseKeys = key_resp.getKeys(keyList=['space'], waitRelease=False)
+#            port.setData(72)
             if len(theseKeys):
                 theseKeys = theseKeys[0]  # at least one key was pressed
 
@@ -1037,7 +1038,7 @@ for thisTrial_block_1 in trial_block_1:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
     trial_block_1.addData('Bodziec.started', Bodziec.tStartRefresh)
-    trial_block_1.addData('Bodziec.stopped', Bodziec.tStopRefresh)
+#    trial_block_1.addData('Bodziec.stopped', Bodziec.tStopRefresh)
     # check responses
     if key_resp.keys in ['', [], None]:  # No response was made
         key_resp.keys = None
@@ -1045,7 +1046,7 @@ for thisTrial_block_1 in trial_block_1:
     if key_resp.keys != None:  # we had a response
         trial_block_1.addData('key_resp.rt', key_resp.rt)
     trial_block_1.addData('key_resp.started', key_resp.tStartRefresh)
-    trial_block_1.addData('key_resp.stopped', key_resp.tStopRefresh)
+#    trial_block_1.addData('key_resp.stopped', key_resp.tStopRefresh)
 
 
     # ------Prepare to start Routine "Przerwa"-------
@@ -1110,7 +1111,7 @@ for thisTrial_block_1 in trial_block_1:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
     thisExp.addData('Clear_screen.started', Clear_screen.tStartRefresh)
-    thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
+#    thisExp.addData('Clear_screen.stopped', Clear_screen.tStopRefresh)
 
 
     # ------Prepare to start Routine "feedback"-------
@@ -1122,26 +1123,27 @@ for thisTrial_block_1 in trial_block_1:
     # update component parameters for each repeat
     print(key_resp.rt)
 
-    trigger = 10
+    trigger = 90
 
     if too_fast == True:
         fdb = feedbackfile[3] #reaction before stimuli
         feedVal.append(0)
         too_fast = False
+        trigger = 77
     else:
         if key_resp.rt != list(): #test if there was response
             if key_resp.rt < duration:
                 fdb = feedbackfile[0] #positive feedback
                 feedVal.append(1)
-                trigger = 10
+                trigger = 75
             else:
                 fdb = feedbackfile[1] #negative feedback
                 feedVal.append(0)
-                trigger = 20
+                trigger = 76
         else:
             fdb = feedbackfile[2] #no-response feedback
             feedVal.append(0)
-            trigger = 30
+            trigger = 80
 
 
     image.setImage(fdb)
@@ -1169,7 +1171,7 @@ for thisTrial_block_1 in trial_block_1:
             image.frameNStart = frameN  # exact frame index
             win.timeOnFlip(image, 'tStartRefresh')  # time at next scr refresh
             image.setAutoDraw(True)
-            port.setData(trigger)
+#            port.setData(trigger)
         frameRemains = 0.0 + 1.0- win.monitorFramePeriod * 0.75  # most of one frame period left
         if image.status == STARTED and t >= frameRemains:
             # keep track of stop time/frame for later
@@ -1205,7 +1207,7 @@ for thisTrial_block_1 in trial_block_1:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
     trial_block_1.addData('image.started', image.tStartRefresh)
-    trial_block_1.addData('image.stopped', image.tStopRefresh)
+    trial_block_1.addData('feedback.type', trigger)
     thisExp.nextEntry()
 
 # completed 5 repeats of 'trial_block_1'
@@ -1307,16 +1309,16 @@ while continueRoutine:
 for thisComponent in scoreBoardComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-thisExp.addData('scoreBoard.started', scoreBoard.tStartRefresh)
-thisExp.addData('scoreBoard.stopped', scoreBoard.tStopRefresh)
-# check responses
-if key_resp_scoreBoard.keys in ['', [], None]:  # No response was made
-    key_resp_scoreBoard.keys = None
-thisExp.addData('key_resp_scoreBoard.keys',key_resp_scoreBoard.keys)
-if key_resp_inst_1.keys != None:  # we had a response
-    thisExp.addData('key_resp_inst_1.rt', key_resp_scoreBoard.rt)
-thisExp.addData('key_resp_scoreBoard.started', key_resp_scoreBoard.tStartRefresh)
-thisExp.addData('key_resp_scoreBoard.stopped', key_resp_scoreBoard.tStopRefresh)
+#thisExp.addData('scoreBoard.started', scoreBoard.tStartRefresh)
+#thisExp.addData('scoreBoard.stopped', scoreBoard.tStopRefresh)
+## check responses
+#if key_resp_scoreBoard.keys in ['', [], None]:  # No response was made
+#    key_resp_scoreBoard.keys = None
+#thisExp.addData('key_resp_scoreBoard.keys',key_resp_scoreBoard.keys)
+#if key_resp_inst_1.keys != None:  # we had a response
+#    thisExp.addData('key_resp_inst_1.rt', key_resp_scoreBoard.rt)
+#thisExp.addData('key_resp_scoreBoard.started', key_resp_scoreBoard.tStartRefresh)
+#thisExp.addData('key_resp_scoreBoard.stopped', key_resp_scoreBoard.tStopRefresh)
 thisExp.nextEntry()
 # the Routine "Instrukcja_1" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
@@ -1401,14 +1403,14 @@ for thisComponent in KoniecComponents:
         thisComponent.setAutoDraw(False)
 thisExp.addData('End.started', End.tStartRefresh)
 thisExp.addData('End.stopped', End.tStopRefresh)
-# check responses
-if key_resp_2.keys in ['', [], None]:  # No response was made
-    key_resp_2.keys = None
-thisExp.addData('key_resp_2.keys',key_resp_2.keys)
-if key_resp_2.keys != None:  # we had a response
-    thisExp.addData('key_resp_2.rt', key_resp_2.rt)
-thisExp.addData('key_resp_2.started', key_resp_2.tStartRefresh)
-thisExp.addData('key_resp_2.stopped', key_resp_2.tStopRefresh)
+## check responses
+#if key_resp_2.keys in ['', [], None]:  # No response was made
+#    key_resp_2.keys = None
+#thisExp.addData('key_resp_2.keys',key_resp_2.keys)
+#if key_resp_2.keys != None:  # we had a response
+#    thisExp.addData('key_resp_2.rt', key_resp_2.rt)
+#thisExp.addData('key_resp_2.started', key_resp_2.tStartRefresh)
+#thisExp.addData('key_resp_2.stopped', key_resp_2.tStopRefresh)
 thisExp.nextEntry()
 # the Routine "Koniec" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
