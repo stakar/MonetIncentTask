@@ -130,16 +130,17 @@ Inst_1 = visual.TextStim(win=win, name='Inst_1',
     depth=0.0);
 
 
-# Initialize components for Routine "Scoreboard"
-SCB = get_scoreboard('scores.txt')
+# Initialize components for Routine "Instrukcja_1"
+SCBText,SCB = get_scoreboard('scores.txt')
 scoreBoardClock = core.Clock()
 scoreBoard = visual.TextStim(win=win, name='scoreBoard',
-    text=SCB,
+    text=SCBText + '\n \n Naciśnij enter by przejść dalej',
     font='Arial',
     pos=(0, 0), height=1, wrapWidth=20, ori=0,
     color='white', colorSpace='rgb', opacity=1,
     languageStyle='LTR',
     depth=0.0);
+
 
 
 # Initialize components for Routine "Przerwa"
@@ -228,11 +229,11 @@ image = visual.ImageStim(
 # Initialize components for Routine "Koniec"
 KoniecClock = core.Clock()
 End = visual.TextStim(win=win, name='End',
-    text='Koniec',
+    text='Koniec \n\n Zawołaj osobę przeprowadzającą badanie \n\n Naciśnij spację, aby zapisać wyniki',
     font='Arial',
     pos=(0, 0), height=1, wrapWidth=None, ori=0,
     color='white', colorSpace='rgb', opacity=1,
-    languageStyle='LTR',
+    languageStyle='LTR',alignVert='center',
     depth=0.0);
 
 # Create some handy timers
@@ -1228,110 +1229,15 @@ print('Participant is {}'.format(expInfo['participant']))
 save_score('scores.txt',expInfo['participant'],baseline)
 
 
-# Initialize components for Routine "Scoreboard"
-SCB = get_scoreboard('scores.txt')
-scoreBoardClock = core.Clock()
-scoreBoard = visual.TextStim(win=win, name='scoreBoard',
-    text=SCB,
-    font='Arial',
-    pos=(0, 0), height=1, wrapWidth=20, ori=0,
-    color='white', colorSpace='rgb', opacity=1,
-    languageStyle='LTR',
-    depth=0.0);
+#In case of moving,start here
 
+SCB = np.append(SCB,baseline)
+worst = int((1-np.where(SCB == baseline)[0][0]/len(SCB))*100)
 
-# ------Prepare to start Routine "scoreBoard"-------
-t = 0
-scoreBoardClock.reset()  # clock
-frameN = -1
-continueRoutine = True
-# update component parameters for each repeat
-key_resp_scoreBoard = keyboard.Keyboard()
-# keep track of which components have finished
-scoreBoardComponents = [scoreBoard, key_resp_scoreBoard]
-for thisComponent in scoreBoardComponents:
-    thisComponent.tStart = None
-    thisComponent.tStop = None
-    thisComponent.tStartRefresh = None
-    thisComponent.tStopRefresh = None
-    if hasattr(thisComponent, 'status'):
-        thisComponent.status = NOT_STARTED
-
-
-# -------Start Routine "scoreBoard"-------
-while continueRoutine:
-    # get current time
-    t = scoreBoardClock.getTime()
-    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-    # update/draw components on each frame
-
-    # *scoreBoard* updates
-    if t >= 0.0 and scoreBoard.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        scoreBoard.tStart = t  # not accounting for scr refresh
-        scoreBoard.frameNStart = frameN  # exact frame index
-        win.timeOnFlip(scoreBoard, 'tStartRefresh')  # time at next scr refresh
-        scoreBoard.setAutoDraw(True)
-
-    # *key_resp_scoreBoard* updates
-    if t >= 0.0 and key_resp_scoreBoard.status == NOT_STARTED:
-        # keep track of start time/frame for later
-        key_resp_scoreBoard.tStart = t  # not accounting for scr refresh
-        key_resp_scoreBoard.frameNStart = frameN  # exact frame index
-        win.timeOnFlip(key_resp_scoreBoard, 'tStartRefresh')  # time at next scr refresh
-        key_resp_scoreBoard.status = STARTED
-        # keyboard checking is just starting
-        win.callOnFlip(key_resp_scoreBoard.clock.reset)  # t=0 on next screen flip
-        key_resp_scoreBoard.clearEvents(eventType='keyboard')
-    if key_resp_scoreBoard.status == STARTED:
-        theseKeys = key_resp_scoreBoard.getKeys(keyList=['return'], waitRelease=False)
-        if len(theseKeys):
-            theseKeys = theseKeys[0]  # at least one key was pressed
-
-            # check for quit:
-            if "escape" == theseKeys:
-                endExpNow = True
-            key_resp_scoreBoard.keys = theseKeys.name  # just the last key pressed
-            key_resp_scoreBoard.rt = theseKeys.rt
-            # a response ends the routine
-            continueRoutine = False
-
-    # check for quit (typically the Esc key)
-    if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
-        core.quit()
-
-    # check if all components have finished
-    if not continueRoutine:  # a component has requested a forced-end of Routine
-        break
-    continueRoutine = False  # will revert to True if at least one component still running
-    for thisComponent in scoreBoardComponents:
-        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-            continueRoutine = True
-            break  # at least one component has not yet finished
-
-    # refresh the screen
-    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-        win.flip()
-
-# -------Ending Routine "scoreBoard"-------
-for thisComponent in scoreBoardComponents:
-    if hasattr(thisComponent, "setAutoDraw"):
-        thisComponent.setAutoDraw(False)
-#thisExp.addData('scoreBoard.started', scoreBoard.tStartRefresh)
-#thisExp.addData('scoreBoard.stopped', scoreBoard.tStopRefresh)
-## check responses
-#if key_resp_scoreBoard.keys in ['', [], None]:  # No response was made
-#    key_resp_scoreBoard.keys = None
-#thisExp.addData('key_resp_scoreBoard.keys',key_resp_scoreBoard.keys)
-#if key_resp_inst_1.keys != None:  # we had a response
-#    thisExp.addData('key_resp_inst_1.rt', key_resp_scoreBoard.rt)
-#thisExp.addData('key_resp_scoreBoard.started', key_resp_scoreBoard.tStartRefresh)
-#thisExp.addData('key_resp_scoreBoard.stopped', key_resp_scoreBoard.tStopRefresh)
-thisExp.nextEntry()
-# the Routine "Instrukcja_1" was not non-slip safe, so reset the non-slip timer
-routineTimer.reset()
-
-
+if worst == 0:
+    worst = 100
+    
+save_percentyl('result.txt',expInfo['participant'],worst)
 
 # ------Prepare to start Routine "Koniec"-------
 t = 0
@@ -1411,14 +1317,14 @@ for thisComponent in KoniecComponents:
         thisComponent.setAutoDraw(False)
 thisExp.addData('End.started', End.tStartRefresh)
 thisExp.addData('End.stopped', End.tStopRefresh)
-## check responses
-#if key_resp_2.keys in ['', [], None]:  # No response was made
-#    key_resp_2.keys = None
-#thisExp.addData('key_resp_2.keys',key_resp_2.keys)
-#if key_resp_2.keys != None:  # we had a response
-#    thisExp.addData('key_resp_2.rt', key_resp_2.rt)
-#thisExp.addData('key_resp_2.started', key_resp_2.tStartRefresh)
-#thisExp.addData('key_resp_2.stopped', key_resp_2.tStopRefresh)
+# check responses
+if key_resp_2.keys in ['', [], None]:  # No response was made
+    key_resp_2.keys = None
+thisExp.addData('key_resp_2.keys',key_resp_2.keys)
+if key_resp_2.keys != None:  # we had a response
+    thisExp.addData('key_resp_2.rt', key_resp_2.rt)
+thisExp.addData('key_resp_2.started', key_resp_2.tStartRefresh)
+thisExp.addData('key_resp_2.stopped', key_resp_2.tStopRefresh)
 thisExp.nextEntry()
 # the Routine "Koniec" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
