@@ -20,12 +20,19 @@ Modules:
     disappears. After respondent's reaction the feedback is provided about accuracy.
     Respondent is instructed to react for stimuli before it deisappears.
     Reaction times are obtained.
-
-TODO:
-    1.Pre-trial
-    2.Trial
-    3.Instructions
-    4.mechanism for calculating response time
+    
+Triggers:
+    1  :  start of experiment/stimulus in test trial
+    78 :  test response
+    70 :  fixation appears
+    71 :  response during fixation/stimulus in trials apears
+    72 :  response for trial
+    75 :  positive feedback
+    76 :  negative feedback
+    77 :  too fast response feedback
+    80 :  no response feeback
+    90 :  default trigger for feedback
+    
 
 This experiment was created using PsychoPy3 Experiment Builder (v3.1.2),
     on lipiec 03, 2019, at 12:48
@@ -50,7 +57,7 @@ from tools import *
 from psychopy.hardware import keyboard
 
 #port = parallel.ParallelPort(address=0x0378)
-#port.setData(0) # sets all pins low
+#port.setData(1) # sets all pins low
 # Ensure that relative paths start from the same directory as this script
 _thisDir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(_thisDir)
@@ -969,6 +976,7 @@ for thisTrial_block_1 in trial_block_1:
             Bodziec.frameNStart = frameN  # exact frame index
             win.timeOnFlip(Bodziec, 'tStartRefresh')  # time at next scr refresh
             Bodziec.setAutoDraw(True)
+#            port.setData(71)
             #below variable duration defines how long the stimulus is shown
         frameRemains = 0.0 + duration - win.monitorFramePeriod * 0.75  # most of one frame period left
         if Bodziec.status == STARTED and t >= frameRemains:
