@@ -94,7 +94,7 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 # Setup the Window
 
 win = visual.Window(
-     size=(512, 384), fullscr=False, screen=0,
+     size=(1012, 984), fullscr=False, screen=0,
      winType='pyglet', allowGUI=True, allowStencil=False,
      monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
      blendMode='avg', useFBO=True,
@@ -163,7 +163,7 @@ Fixation = visual.TextStim(win=win, name='Fixation',
     languageStyle='LTR',
     depth=0.0);
 
-fixDuration = np.random.uniform(1.5,2.5)
+fixDuration = np.random.uniform(5,7)
 
 # Initialize components for Routine "Trial_1"
 Trial_1Clock = core.Clock()
@@ -726,7 +726,9 @@ routineTimer.reset()
 #BELOW nREPs defines number of repetition in trial, change when you know how
 #many trials should be
 
-trial_block_1 = data.TrialHandler(nReps=10, method='random',
+fixDuration = np.random.uniform(3,5)
+
+trial_block_1 = data.TrialHandler(nReps=5, method='random',
     extraInfo=expInfo, originPath=-1,
     trialList=[None],
     seed=None, name='trial_block_1')
@@ -942,7 +944,7 @@ for thisTrial_block_1 in trial_block_1:
             thisComponent.setAutoDraw(False)
     trial_block_1.addData('Fixation.started', Fixation.tStartRefresh)
 #    trial_block_1.addData('Fixation.stopped', Fixation.tStopRefresh)
-    fixDuration = np.random.uniform(1,2)
+    fixDuration = np.random.uniform(5,6)
 
 
     # ------Prepare to start Routine "Trial_2"-------
@@ -1089,7 +1091,7 @@ for thisTrial_block_1 in trial_block_1:
             Clear_screen.frameNStart = frameN  # exact frame index
             win.timeOnFlip(Clear_screen, 'tStartRefresh')  # time at next scr refresh
             Clear_screen.setAutoDraw(True)
-        frameRemains = 0.0 + 1.0- win.monitorFramePeriod * 0.75  # most of one frame period left
+        frameRemains = 0.0 + 3.0- win.monitorFramePeriod * 0.75  # most of one frame period left
         if Clear_screen.status == STARTED and t >= frameRemains:
             # keep track of stop time/frame for later
             Clear_screen.tStop = t  # not accounting for scr refresh
@@ -1231,8 +1233,13 @@ save_score('scores.txt',expInfo['participant'],baseline)
 
 #In case of moving,start here
 
-SCB = np.append(SCB,baseline)
+SCB = np.sort(np.append(SCB,baseline))
 worst = int((1-np.where(SCB == baseline)[0][0]/len(SCB))*100)
+print(SCB)
+print(baseline)
+print(int((1-np.where(SCB == baseline)[0][0]/len(SCB))*100))
+print(np.where(SCB == baseline))
+print(np.where(SCB == baseline)[0][0]/len(SCB))
 
 if worst == 0:
     worst = 100
